@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services';
+import { StorageService } from '../../core/services';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private _AuthService: AuthService,
+    private _StorageService: StorageService
+  ) {}
   form: FormGroup;
-  isLogin: boolean = true;
 
   get user() {
     return this.form.get('user');
@@ -36,11 +41,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onLogin(status: boolean) {
-    this.isLogin = status;
-  }
-
   onSubmit() {
-    console.log(this.form.value);
+    this._AuthService.postLogin(this.form.value).subscribe((data: any) => {
+      this._StorageService.setData(data);
+    });
   }
 }

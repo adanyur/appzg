@@ -1,0 +1,49 @@
+<div class="container-form">
+  <div class="card-form">
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h1 class="form-title">Registrarse</h1>
+      <div class="group-form">
+        <input
+          type="text"
+          class="form-input"
+          placeholder=" "
+          formControlName="nombres"
+        />
+        <label class="label-control">Nombres</label>
+      </div>
+
+      <div class="group-form">
+        <input
+          type="text"
+          class="form-input"
+          placeholder=" "
+          formControlName="apellidos"
+        />
+        <label class="label-control">Apellidos</label>
+      </div>
+
+      <div class="group-form">
+        <input
+          type="text"
+          class="form-input"
+          placeholder=" "
+          formControlName="correo"
+        />
+        <label class="label-control">Correo</label>
+      </div>
+      <div class="group-form">
+        <input
+          type="password"
+          class="form-input"
+          placeholder=" "
+          formControlName="password"
+        />
+        <label class="label-control">Password</label>
+      </div>
+
+      <div class="group-form">
+        <button type="submit" class="btn-login">Crear Usuario</button>
+      </div>
+    </form>
+  </div>
+</div>

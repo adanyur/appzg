@@ -8,8 +8,7 @@
 .card-form {
   position: relative;
   width: 100%;
-  /* padding: 4rem 2rem; */
-  padding: 4rem 2rem 0 2rem;
+  padding: 4rem 2rem;
   border-radius: 2rem;
   box-shadow: none;
 }
@@ -74,23 +73,19 @@
 
 .form__footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  text-align: center;
+  font-size: 0.7rem;
   margin: 2rem 0 0 0;
-  border-top: 1px solid #dbdbdb;
-  text-decoration: none;
+  padding: 1rem;
+  border-top: 1px solid #dbdb;
 }
 
 .form__footer_item {
-  padding: 1.2rem 0;
-  font-size: 0.8rem;
+  max-width: 100px;
 }
 
-.form__footer_item a {
-  color: #000;
-  text-decoration: none;
-}
-
-.form__footer_item:hover a {
+.form__footer_item:hover {
   color: #005ead;
   cursor: pointer;
 }
