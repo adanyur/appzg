@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services';
-import { StorageService } from '../../core/services';
+import { StorageService, ToasterService } from '../../core/services';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _AuthService: AuthService,
-    private _StorageService: StorageService
+    private _StorageService: StorageService,
+    private _ToasterService: ToasterService
   ) {}
   form: FormGroup;
 
@@ -44,6 +45,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this._AuthService.postLogin(this.form.value).subscribe((data: any) => {
       this._StorageService.setData(data);
+      if (data) {
+        this._ToasterService.toaster('success', 'Bienvenido', 'Inicio Session');
+      }
     });
   }
 }

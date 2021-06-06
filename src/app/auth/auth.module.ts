@@ -7,10 +7,11 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { HttpsInterceptor } from '../core/interceptors';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [LoginComponent, RegistrarComponent],
-  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule, SharedModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

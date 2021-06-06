@@ -1,0 +1,7 @@
+<ng-container *ngFor="let toast of toasts$ | async; index as i">
+  <div class="toast toast-{{ toast.type }}" [style.bottom.px]="i * 160">
+    <h4 class="toast-heading">{{ toast.title }}</h4>
+    <p>{{ toast.body }}</p>
+    <a class="close" (click)="remove.emit(i)">&times;</a>
+  </div>
+</ng-container>
