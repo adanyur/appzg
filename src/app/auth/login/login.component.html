@@ -1,18 +1,36 @@
 <div class="container-form">
   <div class="card-form">
-    <form autocomplete="off">
-      <h1 class="form-title">Login in</h1>
-      <div class="group-form">
-        <input type="text" id="user" class="form-input" placeholder=" " />
-        <label class="label-control">Email</label>
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h1 class="form-title">Login</h1>
+      <div class="group-form" [class.message__height]="userRequired">
+        <input
+          type="text"
+          class="form-input"
+          placeholder=" "
+          formControlName="user"
+        />
+        <label class="label-control">User</label>
+        <div *ngIf="userRequired" class="message__error">
+          <span>error</span>
+        </div>
       </div>
-      <div class="group-form">
-        <input type="text" id="password" class="form-input" placeholder=" " />
+
+      <div class="group-form" [class.message__height]="passwordRequired">
+        <input
+          type="password"
+          class="form-input"
+          placeholder=" "
+          formControlName="password"
+        />
         <label class="label-control">Password</label>
+        <div *ngIf="passwordRequired" class="message__error">
+          <span>error</span>
+        </div>
       </div>
       <div class="group-form">
-        <button type="button" class="btn-login">Sign in</button>
+        <button type="submit" class="btn-login">Sign in</button>
       </div>
     </form>
+    <span>Registrarse</span>
   </div>
 </div>
