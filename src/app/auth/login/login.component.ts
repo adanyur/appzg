@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { AuthService } from '../services';
 import { StorageService, ToasterService } from '../../core/services';
 
@@ -13,7 +15,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private _AuthService: AuthService,
     private _StorageService: StorageService,
-    private _ToasterService: ToasterService
+    private _ToasterService: ToasterService,
+    private _Router: Router
   ) {}
   form: FormGroup;
 
@@ -44,9 +47,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this._AuthService.postLogin(this.form.value).subscribe((data: any) => {
-      this._StorageService.setData(data);
       if (data) {
+        this._StorageService.setData(data);
         this._ToasterService.toaster('success', 'Bienvenido', 'Inicio Session');
+        this._Router.navigate(['modulos']);
       }
     });
   }

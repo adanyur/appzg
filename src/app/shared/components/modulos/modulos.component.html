@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="card" *ngFor="let data of datas$ | async; index as i">
+    <div class="card-img">
+      <img [src]="data.icon" class="img-icon" />
+    </div>
+    <div class="card-footer">{{ data.name }}</div>
+  </div>
+</div>
+<app-toaster></app-toaster>
