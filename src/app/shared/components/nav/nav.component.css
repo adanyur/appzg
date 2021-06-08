@@ -6,15 +6,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+  /* box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2); */
+  border-bottom: 1px solid #dbdbdb;
 }
 
 .nav-item {
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
 }
 
-.h-1 {
-  font-size: 2rem;
-  font-weight: 600;
+.nav-title {
+  font-size: 1.5rem;
+  font-weight: 500;
   color: #005ead;
 }
