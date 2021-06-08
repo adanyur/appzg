@@ -11,6 +11,7 @@
   padding: 4rem 2rem 0 2rem;
   border-radius: 2rem;
   box-shadow: none;
+  background-color: #fff;
 }
 
 .form-title {
@@ -130,6 +131,7 @@
   .card-form {
     width: 360px;
     box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+    background-color: #fff;
   }
 
   .btn-login {
