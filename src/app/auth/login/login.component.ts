@@ -38,8 +38,12 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  get touched() {
+  get userTouched() {
     return this.user.dirty || this.user.touched;
+  }
+
+  get passwordTouched() {
+    return this.password.dirty || this.password.touched;
   }
 
   ngOnInit(): void {

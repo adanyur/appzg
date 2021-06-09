@@ -9,8 +9,8 @@
           class="form-input"
           placeholder=" "
           formControlName="user"
-          [class.success__valid]="user.valid && touched"
-          [class.success__invalid]="user.invalid && touched"
+          [class.success__valid]="user.valid && userTouched"
+          [class.error__invalid]="user.invalid && userTouched"
         />
         <label class="label-control">User</label>
         <div *ngIf="userRequired" class="message__error">
@@ -24,8 +24,8 @@
           class="form-input"
           placeholder=" "
           formControlName="password"
-          [class.success__valid]="password.valid && touched"
-          [class.success__invalid]="password.invalid && touched"
+          [class.success__valid]="password.valid && passwordTouched"
+          [class.error__invalid]="password.invalid && passwordTouched"
         />
         <label class="label-control">Password</label>
         <div *ngIf="passwordRequired" class="message__error">
@@ -33,9 +33,15 @@
         </div>
       </div>
       <div class="group-form">
-        <button type="submit" class="btn-login">Sign in</button>
+        <button
+          type="submit"
+          [class.button__disabeld]="form.invalid"
+          [disabled]="form.invalid"
+          [class.btn-login]="form.valid"
+        >
+          Sign in
+        </button>
       </div>
-
       <div class="form__footer">
         <span class="form__footer_item"
           ><a routerLink="">¿Recuperar contraseña?</a></span

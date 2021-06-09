@@ -12,7 +12,8 @@
   border-radius: 2rem;
   box-shadow: none;
   background-color: #fff;
-  border: 1px solid #005ead;
+
+  border: 1px solid #dadce0;
 }
 
 .form-title {
@@ -96,7 +97,8 @@
   cursor: pointer;
 }
 
-.btn-login {
+.btn-login,
+.button__disabeld {
   display: block;
   border-radius: 2rem;
   padding: 0 32px;
@@ -108,9 +110,16 @@
   outline: none;
   border: none;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-login {
   background-color: #005ead;
   color: #fff;
-  transition: 0.3s;
+}
+
+.button__disabeld {
+  background-color: #dbdbdb;
 }
 
 .btn-login:hover {
@@ -130,7 +139,7 @@
   border: 1px solid #22b14c;
 }
 
-.success__invalid {
+.error__invalid {
   border: 1px solid #ff7171;
   color: #ff7171;
 }
@@ -146,7 +155,8 @@
     background-color: #fff;
   }
 
-  .btn-login {
+  .btn-login,
+  .button__disabeld {
     width: auto;
   }
 }
