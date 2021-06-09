@@ -1,7 +1,7 @@
 .nav-main {
   position: fixed;
   width: 100%;
-  height: 100px;
+  height: 70px;
   background-color: #fff;
   z-index: 1;
   display: flex;
@@ -17,7 +17,11 @@
   cursor: pointer;
 }
 
-.imga-icon:hover {
+.image-icon {
+  margin: 0 5px 0 0;
+}
+
+.image-icon:hover {
   filter: drop-shadow(2px 4px 8px #5c5c5c);
 }
 
@@ -26,7 +30,9 @@
   font-weight: 500;
   color: #fff;
   width: 100%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (min-width: 768px) and (min-width: 992px) {

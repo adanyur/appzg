@@ -1,3 +1,4 @@
+<app-nav></app-nav>
 <div class="container-form">
   <div class="card-form">
     <form autocomplete="off" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -8,10 +9,12 @@
           class="form-input"
           placeholder=" "
           formControlName="user"
+          [class.success__valid]="user.valid && touched"
+          [class.success__invalid]="user.invalid && touched"
         />
         <label class="label-control">User</label>
         <div *ngIf="userRequired" class="message__error">
-          <span>error</span>
+          <span>Ingresar usuario</span>
         </div>
       </div>
 
@@ -21,10 +24,12 @@
           class="form-input"
           placeholder=" "
           formControlName="password"
+          [class.success__valid]="password.valid && touched"
+          [class.success__invalid]="password.invalid && touched"
         />
         <label class="label-control">Password</label>
         <div *ngIf="passwordRequired" class="message__error">
-          <span>error</span>
+          <span>Ingresar password</span>
         </div>
       </div>
       <div class="group-form">
@@ -42,4 +47,3 @@
     </form>
   </div>
 </div>
-<app-toaster></app-toaster>

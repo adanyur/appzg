@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../services';
-import { StorageService, ToasterService } from '../../core/services';
+import { StorageService, MessagesModalService } from '../../core/services';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private _AuthService: AuthService,
     private _StorageService: StorageService,
-    private _ToasterService: ToasterService,
+    private _MessagesModalService: MessagesModalService,
     private _Router: Router
   ) {}
   form: FormGroup;
@@ -38,6 +38,10 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  get touched() {
+    return this.user.dirty || this.user.touched;
+  }
+
   ngOnInit(): void {
     this.form = this.fb.group({
       user: [null, Validators.required],
@@ -49,7 +53,7 @@ export class LoginComponent implements OnInit {
     this._AuthService.postLogin(this.form.value).subscribe((data: any) => {
       if (data) {
         this._StorageService.setData(data);
-        this._ToasterService.toaster('success', 'Bienvenido', 'Inicio Session');
+        this._MessagesModalService.messageSucces();
         this._Router.navigate(['modulos']);
       }
     });

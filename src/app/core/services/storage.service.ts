@@ -20,5 +20,7 @@ export class StorageService {
     return localStorage.getItem('token');
   }
 
-  clearLocalstorage() {}
+  clearLocalstorage() {
+    localStorage.clear();
+  }
 }
