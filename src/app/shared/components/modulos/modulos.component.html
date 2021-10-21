@@ -2,7 +2,7 @@
 <div class="container">
   <div class="card" *ngFor="let data of datas$ | async; index as i">
     <div class="card-img">
-      <img [src]="data.icon" class="img-icon" />
+      <a [routerLink]="data.url"><img [src]="data.icon" class="img-icon" /></a>
     </div>
     <div class="card-footer">{{ data.name }}</div>
   </div>
