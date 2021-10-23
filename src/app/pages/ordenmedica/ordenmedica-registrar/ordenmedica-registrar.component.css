@@ -1,0 +1,23 @@
+.text__title {
+  font-weight: 600;
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+@media (min-width: 768px) and (min-width: 992px) {
+  .text__title {
+    font-size: 3em;
+  }
+
+  .row__item {
+    display: flex;
+  }
+
+  .mr_1 {
+    margin-right: 1rem;
+  }
+
+  .w__30 {
+    width: 30%;
+  }
+}

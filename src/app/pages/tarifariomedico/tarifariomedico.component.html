@@ -1,1 +1,44 @@
-<p>tarifariomedico works!</p>
+<div class="container flex__column animate__animated animate__fadeIn">
+  <h1 class="text__title">Agenda Medica</h1>
+  <div class="row__item">
+    <div class="group__form mr_1">
+      <input type="date" class="input__control" placeholder=" " />
+      <label class="label__control">Ingresa la fecha</label>
+    </div>
+    <div class="group__form">
+      <button type="button" class="btn">Buscar</button>
+    </div>
+  </div>
+
+  <div class="table__desktop">
+    <div class="row__header__desktop">
+      <div class="cell">Historia</div>
+      <div class="cell">Nombre</div>
+      <div class="cell">Edad</div>
+      <div class="cell">Genero</div>
+      <div class="cell">Turno</div>
+      <div class="cell">Consultar</div>
+      <div class="cell">Especialida</div>
+    </div>
+    <div class="table" *ngFor="let agendaMedica of agendaMedica$ | async">
+      <div class="row__header">
+        <div class="cell">Historia</div>
+        <div class="cell">Nombre</div>
+        <div class="cell">Edad</div>
+        <div class="cell">Genero</div>
+        <div class="cell">Turno</div>
+        <div class="cell">Consultar</div>
+        <div class="cell">Especialida</div>
+      </div>
+      <div class="row__body">
+        <div class="cell">{{ agendaMedica.hc }}</div>
+        <div class="cell">{{ agendaMedica.nombre | titlecase }}</div>
+        <div class="cell">{{ agendaMedica.edad }}</div>
+        <div class="cell">{{ agendaMedica.genero }}</div>
+        <div class="cell">{{ agendaMedica.turno }}</div>
+        <div class="cell">{{ agendaMedica.consultar | titlecase }}</div>
+        <div class="cell">{{ agendaMedica.especialidad | titlecase }}</div>
+      </div>
+    </div>
+  </div>
+</div>

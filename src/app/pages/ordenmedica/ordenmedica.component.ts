@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-
 import { agendaMedica } from '../../core/mocks/db';
-
 @Component({
-  selector: 'app-programacionsala',
-  templateUrl: './programacionsala.component.html',
-  styleUrls: ['./programacionsala.component.css'],
+  selector: 'app-ordenmedica',
+  template: `<router-outlet></router-outlet>`,
+  styles: [],
 })
-export class ProgramacionsalaComponent implements OnInit {
+export class OrdenmedicaComponent implements OnInit {
   agendaMedica$: Observable<any>;
+
   constructor() {}
 
   ngOnInit(): void {
