@@ -44,6 +44,7 @@
     />
     <label for="" class="label__control">Buscar medicamento</label>
   </div>
+
   <ul *ngIf="parametersSearch">
     <li
       *ngFor="
@@ -57,23 +58,64 @@
     </li>
   </ul>
 
-  <form [formGroup]="form">
-    <ng-container formArrayName="detalles">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="table__desktop">
       <div
-        *ngFor="let _ of detalles.controls; index as i"
-        class="animate__animated animate__fadeIn"
+        class="row__header__desktop animate__animated animate__fadeIn"
+        *ngIf="tieneDetalle"
       >
-        <ng-container [formGroupName]="i">
-          {{ detalles.value[i].descripcion }}
-          {{ detalles.value[i].precio }}
-          <input type="number" formControlName="cantidad" />
-          <input type="number" formControlName="subtotal" />
-          <button (click)="deleteMedicamento(i)">Eliminar</button>
-        </ng-container>
+        <div class="cell">Medicamento</div>
+        <div class="cell">Precio</div>
+        <div class="cell">Cantidad</div>
+        <div class="cell">Subtotal</div>
+        <div class="cell">Subtotal</div>
       </div>
-    </ng-container>
+      <ng-container formArrayName="detalles">
+        <div
+          *ngFor="let _ of detalles.controls; index as i"
+          class="animate__animated animate__fadeIn"
+        >
+          <ng-container [formGroupName]="i">
+            <div class="row__header">
+              <div class="cell">Medicamento</div>
+              <div class="cell">Precio</div>
+              <div class="cell">Cantidad</div>
+              <div class="cell">Subtotal</div>
+            </div>
+            <div class="row__body">
+              <div class="cell">{{ detalles.value[i].descripcion }}</div>
+              <div class="cell">{{ detalles.value[i].precio }}</div>
+              <div class="cell">
+                <input
+                  type="number"
+                  formControlName="cantidad"
+                  class="input__table"
+                />
+              </div>
+              <div class="cell">
+                <input
+                  type="number"
+                  formControlName="subtotal"
+                  class="input__table"
+                />
+              </div>
+              <div class="cell">
+                <img
+                  src="../../../../assets/icon/delete_black_white.svg"
+                  (click)="deleteMedicamento(i)"
+                />
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+    <div class="table__pie" *ngIf="total$ | async as total">
+      <b> Total:&nbsp;&nbsp;</b>S./{{ total }}
+    </div>
+
+    <div class="group__form">
+      <button class="btn">Guardar</button>
+    </div>
   </form>
-  <div class="group__form">
-    <button class="btn">Guardar</button>
-  </div>
 </div>
