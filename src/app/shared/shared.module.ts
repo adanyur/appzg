@@ -5,10 +5,16 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { ToasterComponent } from './components/toaster/toaster.component';
 import { ModulosComponent } from './components/modulos/modulos.component';
 import { NavComponent } from './components/nav/nav.component';
+import { FilterMedicamentoPipe } from './pipe/filter-medicamento.pipe';
 
 @NgModule({
-  declarations: [ToasterComponent, ModulosComponent, NavComponent],
+  declarations: [
+    ToasterComponent,
+    ModulosComponent,
+    NavComponent,
+    FilterMedicamentoPipe,
+  ],
   imports: [CommonModule, SharedRoutingModule],
-  exports: [ToasterComponent, NavComponent],
+  exports: [ToasterComponent, NavComponent, FilterMedicamentoPipe],
 })
 export class SharedModule {}

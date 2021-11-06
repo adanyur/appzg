@@ -34,6 +34,45 @@
       <label class="label__control">Descripcion</label>
     </div>
   </div>
+
+  <div class="group__form w__30">
+    <input
+      type="search"
+      class="input__control"
+      placeholder=" "
+      (keyup)="searchMedicamento($event.target)"
+    />
+    <label for="" class="label__control">Buscar medicamento</label>
+  </div>
+  <ul *ngIf="parametersSearch">
+    <li
+      *ngFor="
+        let medicamento of medicamentos$
+          | async
+          | filterMedicamento: parametersSearch
+      "
+      (click)="selectMedicamento(medicamento)"
+    >
+      {{ medicamento.descripcion }}
+    </li>
+  </ul>
+
+  <form [formGroup]="form">
+    <ng-container formArrayName="detalles">
+      <div
+        *ngFor="let _ of detalles.controls; index as i"
+        class="animate__animated animate__fadeIn"
+      >
+        <ng-container [formGroupName]="i">
+          {{ detalles.value[i].descripcion }}
+          {{ detalles.value[i].precio }}
+          <input type="number" formControlName="cantidad" />
+          <input type="number" formControlName="subtotal" />
+          <button (click)="deleteMedicamento(i)">Eliminar</button>
+        </ng-container>
+      </div>
+    </ng-container>
+  </form>
   <div class="group__form">
     <button class="btn">Guardar</button>
   </div>
