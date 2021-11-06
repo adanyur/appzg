@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { medicamentos } from '../../../core/mocks/db';
+import { medicamentos, pacientes } from '../../../core/mocks/db';
+import { StorageService } from '../../../core/services';
 
 @Component({
   selector: 'app-recetamedica-registrar',
@@ -10,10 +11,12 @@ import { medicamentos } from '../../../core/mocks/db';
   styleUrls: ['./recetamedica-registrar.component.css'],
 })
 export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
-  form: FormGroup;
+  pacientes$: Observable<any>;
   medicamentos$: Observable<any>;
-  parametersSearch: string;
   total$: Observable<any>;
+  form: FormGroup;
+  SearchMedicamentoParameter: string;
+  searchPacienteParameter: string;
   private readonly unsubscribe$: Subject<void> = new Subject();
   get detalles(): FormArray {
     return this.form.get('detalles') as FormArray;
@@ -23,18 +26,43 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
     return this.detalles.length > 0;
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private StorageService: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
+      historia: [null],
+      paciente: [null],
+      cm: [null],
+      medico: [null],
+      especialidad: [null],
+      dx: [null],
+      descripcionDiagnostico: [null],
       detalles: this.fb.array([]),
     });
 
     this.medicamentos$ = of(medicamentos);
+    this.pacientes$ = of(pacientes);
+  }
+
+  setMedico() {
+    const { cm, medico } = JSON.parse(this.StorageService.userName);
+    this.form.patchValue({ cm, medico });
   }
 
   searchMedicamento({ value }) {
-    this.parametersSearch = value;
+    this.SearchMedicamentoParameter = value;
+  }
+
+  searchPaciente({ value }) {
+    this.searchPacienteParameter = value;
+  }
+
+  selectPaciente(data: any) {
+    this.form.patchValue(data);
+    this.searchPacienteParameter = undefined;
   }
 
   selectMedicamento({ descripcion, precio }) {
@@ -45,7 +73,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
       subtotal: 0,
     });
     this.detalles.push(item);
-    this.parametersSearch = undefined;
+    this.SearchMedicamentoParameter = undefined;
 
     this.detalles.valueChanges
       .pipe(takeUntil(this.unsubscribe$))

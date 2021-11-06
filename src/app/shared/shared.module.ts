@@ -6,6 +6,7 @@ import { ToasterComponent } from './components/toaster/toaster.component';
 import { ModulosComponent } from './components/modulos/modulos.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FilterMedicamentoPipe } from './pipe/filter-medicamento.pipe';
+import { FilterPacientePipe } from './pipe/filter-paciente.pipe';
 
 @NgModule({
   declarations: [
@@ -13,8 +14,14 @@ import { FilterMedicamentoPipe } from './pipe/filter-medicamento.pipe';
     ModulosComponent,
     NavComponent,
     FilterMedicamentoPipe,
+    FilterPacientePipe,
   ],
   imports: [CommonModule, SharedRoutingModule],
-  exports: [ToasterComponent, NavComponent, FilterMedicamentoPipe],
+  exports: [
+    ToasterComponent,
+    NavComponent,
+    FilterMedicamentoPipe,
+    FilterPacientePipe,
+  ],
 })
 export class SharedModule {}

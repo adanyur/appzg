@@ -179,3 +179,26 @@ export const medicamentos = [
     precio: 53.39,
   },
 ];
+
+export const pacientes = [
+  { paciente: 'WILSON NEYRA SHIRLEY ANGIE', historia: 126292 },
+  { paciente: 'MATOS CONDE RN 2 ', historia: 126313 },
+  { paciente: 'CHOCCELAHUA LIMA ELIZABETH ', historia: 129226 },
+  { paciente: 'PORTOCARRERO PORRAS CINTHIA MERCEDES', historia: 130681 },
+  { paciente: 'PAREDES TARAZONA RN 1 ', historia: 126325 },
+  { paciente: 'VERASTEGUI COSSIO MACARENA ', historia: 113074 },
+  { paciente: 'PICHLING MIGONE BRENDA MARIA', historia: 126323 },
+  { paciente: 'SANCHEZ GELLCHES CLAUDIA VERENISSE', historia: 98190 },
+  { paciente: 'MONTES LOA GABRIELA JIMENA', historia: 126352 },
+  { paciente: 'MONDRAGON NEIRA MARITZA DEL CARMEN', historia: 52766 },
+  { paciente: 'RODRIGUEZ MENDOZA RN 1 ', historia: 126374 },
+  { paciente: 'VALLEJOS MENDOZA RN 2 ', historia: 126403 },
+  { paciente: 'MAMANI HUANUCO RN 1 ', historia: 126397 },
+  { paciente: 'BLAS VALDERRAMA ANGELA ANTHONELLA', historia: 126434 },
+  { paciente: 'SALVADOR GONZALES RAFAELA LALY', historia: 126425 },
+  { paciente: 'VILLEGAS ARISTA VICTORIA LEONOR', historia: 126427 },
+  { paciente: 'TORRES GOMEZ MONICA MILAGROS', historia: 101559 },
+  { paciente: 'FALCONE VILELA GIULLIANA FRANCESCA', historia: 73404 },
+  { paciente: 'BANCES REQUEJO DE ROJAS RN 1 ', historia: 126440 },
+  { paciente: 'GOTUZZO TIRADO MARIANA ALESSIA', historia: 133028 },
+];
