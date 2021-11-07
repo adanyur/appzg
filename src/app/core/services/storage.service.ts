@@ -7,10 +7,7 @@ export class StorageService {
   constructor() {}
 
   setData({ nombre, access_token, expires_in, token_type }) {
-    localStorage.setItem(
-      'user',
-      JSON.stringify({ nombre, cm: 11111, medico: 'Dr. prueba' })
-    );
+    localStorage.setItem('user', nombre);
     localStorage.setItem('token', `${token_type} ${access_token}`);
     localStorage.setItem('expire', expires_in);
   }

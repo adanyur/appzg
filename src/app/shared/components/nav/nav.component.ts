@@ -10,8 +10,7 @@ import { StorageService, MessagesModalService } from '../../../core/services';
 export class NavComponent implements OnInit {
   constructor(
     private _StorageService: StorageService,
-    private _MessagesModalService: MessagesModalService,
-    private _Router: Router
+    private _MessagesModalService: MessagesModalService
   ) {}
   userName: string;
   ngOnInit(): void {
@@ -20,6 +19,5 @@ export class NavComponent implements OnInit {
 
   logout(): void {
     this._MessagesModalService.messageConfirmacion();
-    this._StorageService.clearLocalstorage();
   }
 }

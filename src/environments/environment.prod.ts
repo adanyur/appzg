@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://back-springboot-appzg.herokuapp.com',
+  apiUrl: 'https://heroku-app-medica.herokuapp.com',
 };

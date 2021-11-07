@@ -2,7 +2,12 @@
   <h1 class="text__title">Receta Medica</h1>
   <div class="row__item">
     <div class="group__form mr_1 w__30">
-      <input type="date" class="input__control" placeholder=" " />
+      <input
+        type="date"
+        class="input__control"
+        placeholder=" "
+        (change)="onRecetaMedica($event.target.value)"
+      />
       <label class="label__control">Ingresa la fecha</label>
     </div>
     <div class="group__form">
@@ -15,32 +20,32 @@
 
   <div class="table__desktop">
     <div class="row__header__desktop">
-      <div class="cell">Historia</div>
+      <div class="cell">Tipo documento</div>
+      <div class="cell">N° documento</div>
       <div class="cell">Nombre</div>
+      <div class="cell">Apellido</div>
       <div class="cell">Edad</div>
       <div class="cell">Genero</div>
-      <div class="cell">Turno</div>
-      <div class="cell">Consultar</div>
-      <div class="cell">Especialida</div>
+      <div class="cell">Diagnostico</div>
     </div>
-    <div class="table" *ngFor="let agendaMedica of agendaMedica$ | async">
+    <div class="table" *ngFor="let data of datas$ | async">
       <div class="row__header">
-        <div class="cell">Historia</div>
+        <div class="cell">Tipo documento</div>
+        <div class="cell">N° documento</div>
         <div class="cell">Nombre</div>
+        <div class="cell">Apellido</div>
         <div class="cell">Edad</div>
         <div class="cell">Genero</div>
-        <div class="cell">Turno</div>
-        <div class="cell">Consultar</div>
-        <div class="cell">Especialida</div>
+        <div class="cell">Diagnostico</div>
       </div>
       <div class="row__body">
-        <div class="cell">{{ agendaMedica.hc }}</div>
-        <div class="cell">{{ agendaMedica.nombre | titlecase }}</div>
-        <div class="cell">{{ agendaMedica.edad }}</div>
-        <div class="cell">{{ agendaMedica.genero }}</div>
-        <div class="cell">{{ agendaMedica.turno }}</div>
-        <div class="cell">{{ agendaMedica.consultar | titlecase }}</div>
-        <div class="cell">{{ agendaMedica.especialidad | titlecase }}</div>
+        <div class="cell">{{ data.descripcionTipoDeDocumento }}</div>
+        <div class="cell">{{ data.numeroDeDocumento }}</div>
+        <div class="cell">{{ data.nombre }}</div>
+        <div class="cell">{{ data.apellido }}</div>
+        <div class="cell">{{ data.edad }}</div>
+        <div class="cell">{{ data.genero }}</div>
+        <div class="cell">{{ data.diagnostico }}</div>
       </div>
     </div>
   </div>

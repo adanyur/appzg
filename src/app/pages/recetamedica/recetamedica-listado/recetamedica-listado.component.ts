@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { agendaMedica } from '../../../core/mocks/db';
+import { Observable } from 'rxjs';
+import { ServicesService } from '../services/services.service';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-recetamedica-listado',
@@ -10,11 +12,21 @@ import { agendaMedica } from '../../../core/mocks/db';
 })
 export class RecetamedicaListadoComponent implements OnInit {
   agendaMedica$: Observable<any>;
+  datas$: Observable<any>;
 
-  constructor(private Router: Router) {}
+  constructor(
+    private Router: Router,
+    private ServicesService: ServicesService
+  ) {}
 
   ngOnInit(): void {
-    this.agendaMedica$ = of(agendaMedica);
+    this.onRecetaMedica(moment());
+  }
+
+  onRecetaMedica(fecha: any) {
+    this.datas$ = this.ServicesService.getbandejaRctMedico(
+      moment(fecha).format('DD-MM-YYYY')
+    );
   }
 
   onRegistrar() {

@@ -14,6 +14,7 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: 'Basic ' + credenciales,
     });
+
     let params = new URLSearchParams();
     params.set('grant_type', 'password');
     params.set('username', user);

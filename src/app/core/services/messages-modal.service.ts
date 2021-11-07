@@ -7,13 +7,10 @@ import swal from 'sweetalert2';
   providedIn: 'root',
 })
 export class MessagesModalService {
-  userName: string;
   constructor(
     private _Router: Router,
     private _StorageService: StorageService
-  ) {
-    this.userName = this._StorageService.userName;
-  }
+  ) {}
 
   messageConfirmacion() {
     swal
@@ -28,18 +25,19 @@ export class MessagesModalService {
       .then((result) => {
         if (result.isConfirmed) {
           swal.fire(
-            `${this.userName} Bien Hecho!!`,
+            `${this._StorageService.userName} Bien Hecho!!`,
             `Usted ha cerrado session`,
             'success'
           );
           this._Router.navigate(['']);
+          this._StorageService.clearLocalstorage();
         }
       });
   }
 
   messageSucces() {
     swal.fire(
-      `${this.userName} Bien Hecho!!`,
+      `${this._StorageService.userName} Bien Hecho!!`,
       'Usted, ha iniciado session',
       'success'
     );
