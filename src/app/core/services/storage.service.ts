@@ -10,6 +10,7 @@ export class StorageService {
     localStorage.setItem('user', nombre);
     localStorage.setItem('token', `${token_type} ${access_token}`);
     localStorage.setItem('expire', expires_in);
+    localStorage.setItem('cmp', '04323');
   }
 
   get userName() {
@@ -18,6 +19,10 @@ export class StorageService {
 
   get token() {
     return localStorage.getItem('token');
+  }
+
+  get codigoCmp() {
+    return localStorage.getItem('cmp');
   }
 
   clearLocalstorage() {

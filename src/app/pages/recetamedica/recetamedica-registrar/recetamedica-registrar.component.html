@@ -45,7 +45,7 @@
           type="text"
           class="input__control"
           placeholder=" "
-          formControlName="cm"
+          formControlName="cmp"
         />
         <label class="label__control">CM</label>
       </div>
@@ -104,13 +104,9 @@
         <div
           (click)="selectMedicamento(medicamento)"
           class="dropdown__item"
-          *ngFor="
-            let medicamento of medicamentos$
-              | async
-              | filterMedicamento: SearchMedicamentoParameter
-          "
+          *ngFor="let medicamento of medicamentos$ | async"
         >
-          {{ medicamento.descripcion | titlecase }}
+          {{ medicamento.nombre | titlecase }}
         </div>
       </div>
     </div>
@@ -120,10 +116,10 @@
         class="row__header__desktop animate__animated animate__fadeIn"
         *ngIf="tieneDetalle"
       >
-        <div class="cell">producto</div>
-        <div class="cell">Precio</div>
+        <div class="cell">Producto</div>
         <div class="cell">Cantidad</div>
-        <div class="cell">Subtotal</div>
+        <div class="cell">Posología</div>
+
         <div class="cell">&nbsp;</div>
       </div>
       <ng-container formArrayName="detalles">
@@ -134,30 +130,34 @@
           <ng-container [formGroupName]="i">
             <div class="row__header">
               <div class="cell">producto</div>
-              <div class="cell">Precio</div>
               <div class="cell">Cantidad</div>
-              <div class="cell">Subtotal</div>
+              <div class="cell">Posología</div>
+
               <div class="cell">&nbsp;</div>
             </div>
             <div class="row__body">
               <div class="cell overly__y">
                 {{ detalles.value[i].descripcion }}
               </div>
-              <div class="cell">{{ detalles.value[i].precio }}</div>
               <div class="cell">
                 <input
                   type="number"
                   formControlName="cantidad"
-                  class="input__table"
+                  class="input__table w__50"
                 />
               </div>
+
+              <!-- <div class="cell">{{ detalles.value[i].precio }}</div> -->
               <div class="cell">
+                <input type="text" class="input__table" />
+              </div>
+              <!-- <div class="cell">
                 <input
                   type="number"
                   formControlName="subtotal"
-                  class="input__table"
+                  class="input__table w__70"
                 />
-              </div>
+              </div> -->
               <div class="cell">
                 <img
                   src="../../../../assets/icon/delete_black_white.svg"
@@ -178,3 +178,7 @@
     </div>
   </div>
 </form>
+
+<pre
+  >{{ form.value | json }}
+</pre>

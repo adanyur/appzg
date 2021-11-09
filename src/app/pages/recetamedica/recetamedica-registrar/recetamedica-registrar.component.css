@@ -127,6 +127,10 @@
     width: 30%;
   }
 
+  .w__50 {
+    width: 50%;
+  }
+
   .table {
     flex-direction: column;
     padding: 0.5rem;

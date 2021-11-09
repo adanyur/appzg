@@ -1,9 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { medicamentos, pacientes } from '../../../core/mocks/db';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  switchMap,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
 import { StorageService } from '../../../core/services';
+import { HttpService } from '../../../core/services';
 
 @Component({
   selector: 'app-recetamedica-registrar',
@@ -17,7 +24,9 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
   form: FormGroup;
   SearchMedicamentoParameter: string;
   searchPacienteParameter: string;
+
   private readonly unsubscribe$: Subject<void> = new Subject();
+  searchMedicamentos$ = new Subject<any>();
   get detalles(): FormArray {
     return this.form.get('detalles') as FormArray;
   }
@@ -28,14 +37,15 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private StorageService: StorageService
+    private StorageService: StorageService,
+    private HttpService: HttpService
   ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       historia: [null],
       paciente: [null],
-      cm: [null],
+      cmp: [null],
       medico: [null],
       especialidad: [null],
       dx: [null],
@@ -43,17 +53,38 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
       detalles: this.fb.array([]),
     });
 
-    this.medicamentos$ = of(medicamentos);
-    this.pacientes$ = of(pacientes);
+    // this.medicamentos$ = of(medicamentos);
+    this.pacientes$ = this.HttpService.getPacienteSearch();
+    this.setMedico();
+    this.getMedicamento();
   }
 
   setMedico() {
-    const { cm, medico } = JSON.parse(this.StorageService.userName);
-    this.form.patchValue({ cm, medico });
+    this.HttpService.getDatosDelMedico(this.StorageService.codigoCmp)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((data) => {
+        const { nomelemento, codmedico, codespecialidad } = data[0];
+        this.form.patchValue({
+          cmp: codmedico,
+          medico: nomelemento,
+          especialidad: codespecialidad,
+        });
+      });
   }
 
   searchMedicamento({ value }) {
+    this.searchMedicamentos$.next(value);
     this.SearchMedicamentoParameter = value;
+  }
+
+  getMedicamento() {
+    this.medicamentos$ = this.searchMedicamentos$.pipe(
+      distinctUntilChanged(),
+      debounceTime(400),
+      switchMap((searchText: string) =>
+        this.HttpService.getsearchMedicamentos(searchText)
+      )
+    );
   }
 
   searchPaciente({ value }) {
@@ -65,10 +96,10 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
     this.searchPacienteParameter = undefined;
   }
 
-  selectMedicamento({ descripcion, precio }) {
+  selectMedicamento({ nombre }) {
     let item = this.fb.group({
-      descripcion,
-      precio,
+      descripcion: nombre,
+      precio: 10,
       cantidad: 0,
       subtotal: 0,
     });

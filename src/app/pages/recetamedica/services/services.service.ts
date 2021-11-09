@@ -15,9 +15,6 @@ export class ServicesService {
   getbandejaRctMedico(fecha: string) {
     return this.http
       .get(`${environment.apiUrl}/api/recetas?medico=04323&fecha=${fecha}`)
-      .pipe(
-        tap(console.log),
-        map((value) => this.moldearData(value))
-      );
+      .pipe(map((value) => this.moldearData(value)));
   }
 }
