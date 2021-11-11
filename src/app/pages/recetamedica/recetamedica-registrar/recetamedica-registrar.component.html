@@ -54,7 +54,7 @@
           type="text"
           class="input__control"
           placeholder=" "
-          formControlName="medico"
+          formControlName="medicoDescripcion"
         />
         <label class="label__control">Nombre Medico</label>
       </div>
@@ -78,15 +78,43 @@
         />
         <label class="label__control">Dx</label>
       </div>
+
       <div class="group__form">
         <input
           type="text"
           class="input__control"
           placeholder=" "
           formControlName="descripcionDiagnostico"
+          (keyup)="searchDiagnostico($event.target)"
         />
         <label class="label__control">Descripcion</label>
+
+        <div
+          class="dropdown__content animate__animated animate__fadeIn"
+          *ngIf="searchDiagnosticoParameter"
+        >
+          <div
+            (click)="selectDiagnostico(diagnostico)"
+            class="dropdown__item"
+            *ngFor="
+              let diagnostico of diagnostico$
+                | async
+                | filterDiagnostico: searchDiagnosticoParameter
+            "
+          >
+            {{ diagnostico.descripcion | titlecase }}
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="group__form">
+      <input
+        type="text"
+        class="input__control"
+        placeholder=" "
+        formControlName="nota"
+      />
+      <label class="label__control">Nota</label>
     </div>
 
     <div class="group__form w__30">
@@ -122,7 +150,7 @@
 
         <div class="cell">&nbsp;</div>
       </div>
-      <ng-container formArrayName="detalles">
+      <ng-container formArrayName="items">
         <div
           *ngFor="let _ of detalles.controls; index as i"
           class="table animate__animated animate__fadeIn"
@@ -149,7 +177,11 @@
 
               <!-- <div class="cell">{{ detalles.value[i].precio }}</div> -->
               <div class="cell">
-                <input type="text" class="input__table" />
+                <input
+                  type="text"
+                  class="input__table"
+                  formControlName="posologia"
+                />
               </div>
               <!-- <div class="cell">
                 <input
@@ -169,9 +201,9 @@
         </div>
       </ng-container>
     </div>
-    <div class="table__pie" *ngIf="total$ | async as total">
+    <!-- <div class="table__pie" *ngIf="total$ | async as total">
       <b> Total:&nbsp;&nbsp;</b>S./{{ total }}
-    </div>
+    </div> -->
 
     <div class="group__form">
       <button class="btn">Guardar</button>
@@ -179,6 +211,7 @@
   </div>
 </form>
 
-<pre
-  >{{ form.value | json }}
+<pre>
+  {{ form.value | json }}
+
 </pre>

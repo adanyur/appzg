@@ -6,8 +6,13 @@ export class RecetaMedica {
   public edad: number;
   public genero: string;
   public diagnostico: string;
+  public idReceta: number;
 
-  constructor({ cliente: { nombre, apellido, numdoc, tipodoc }, dx }) {
+  constructor({
+    cliente: { nombre, apellido, numdoc, tipodoc },
+    dx,
+    id_receta,
+  }) {
     this.nombre = nombre;
     this.apellido = apellido;
     this.numeroDeDocumento = numdoc;
@@ -15,6 +20,7 @@ export class RecetaMedica {
     this.edad = 22;
     this.genero = 'Masculino';
     this.diagnostico = dx;
+    this.idReceta = id_receta;
   }
 
   get descripcionTipoDeDocumento() {

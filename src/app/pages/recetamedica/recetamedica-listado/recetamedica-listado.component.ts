@@ -32,4 +32,8 @@ export class RecetamedicaListadoComponent implements OnInit {
   onRegistrar() {
     this.Router.navigate(['home/recetamedica/registrar']);
   }
+
+  viewPdf({ idReceta }) {
+    this.ServicesService.viewPDF(idReceta).subscribe(console.log);
+  }
 }

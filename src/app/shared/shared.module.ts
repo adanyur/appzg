@@ -7,6 +7,7 @@ import { ModulosComponent } from './components/modulos/modulos.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FilterMedicamentoPipe } from './pipe/filter-medicamento.pipe';
 import { FilterPacientePipe } from './pipe/filter-paciente.pipe';
+import { FilterDiagnosticoPipe } from './pipe/filter-diagnostico.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FilterPacientePipe } from './pipe/filter-paciente.pipe';
     NavComponent,
     FilterMedicamentoPipe,
     FilterPacientePipe,
+    FilterDiagnosticoPipe,
   ],
   imports: [CommonModule, SharedRoutingModule],
   exports: [
@@ -22,6 +24,7 @@ import { FilterPacientePipe } from './pipe/filter-paciente.pipe';
     NavComponent,
     FilterMedicamentoPipe,
     FilterPacientePipe,
+    FilterDiagnosticoPipe,
   ],
 })
 export class SharedModule {}

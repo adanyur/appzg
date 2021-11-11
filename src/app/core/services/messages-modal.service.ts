@@ -42,4 +42,8 @@ export class MessagesModalService {
       'success'
     );
   }
+
+  messageSuccesSave(message: string) {
+    swal.fire('¡¡Bien Hecho!!', `${message}`, 'success');
+  }
 }
