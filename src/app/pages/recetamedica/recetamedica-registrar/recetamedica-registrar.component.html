@@ -91,16 +91,12 @@
 
         <div
           class="dropdown__content animate__animated animate__fadeIn"
-          *ngIf="searchDiagnosticoParameter"
+          *ngIf="searchDiagnosticoStatus"
         >
           <div
             (click)="selectDiagnostico(diagnostico)"
             class="dropdown__item"
-            *ngFor="
-              let diagnostico of diagnostico$
-                | async
-                | filterDiagnostico: searchDiagnosticoParameter
-            "
+            *ngFor="let diagnostico of diagnostico$ | async"
           >
             {{ diagnostico.descripcion | titlecase }}
           </div>
@@ -127,7 +123,7 @@
       <label for="" class="label__control">medicamento</label>
       <div
         class="dropdown__content animate__animated animate__fadeIn"
-        *ngIf="SearchMedicamentoParameter"
+        *ngIf="SearchMedicamentoStatus"
       >
         <div
           (click)="selectMedicamento(medicamento)"

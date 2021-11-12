@@ -22,9 +22,7 @@ export class HttpService {
 
   getDatosDelMedico(idMedico: string) {
     return this.http
-      .get(
-        `${environment.apiUrl}/api/catalogo/filtrar-medicoid?iduser=${idMedico}`
-      )
+      .get(`${environment.apiUrl}/api/catalogo/filtrar-medico?cmp=${idMedico}`)
       .pipe(map((data: any) => new Medico(data)));
   }
 
@@ -37,9 +35,11 @@ export class HttpService {
   modelarDataDiagnostico = (data: any) =>
     data.map((data) => new Diagnosticos(data));
 
-  getDiagnostico() {
+  getDiagnostico(searchText: string) {
     return this.http
-      .get(`${environment.apiUrl}/api/catalogo/filtrar-catalogo/ADM_DX_MAE`)
+      .get(
+        `${environment.apiUrl}/api/catalogo/filtrar-diagnostico?selemento=${searchText}`
+      )
       .pipe(map((data) => this.modelarDataDiagnostico(data)));
   }
 }

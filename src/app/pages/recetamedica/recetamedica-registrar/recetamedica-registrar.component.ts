@@ -6,6 +6,7 @@ import {
   distinctUntilChanged,
   switchMap,
   takeUntil,
+  tap,
 } from 'rxjs/operators';
 import {
   StorageService,
@@ -28,14 +29,19 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
 
-  SearchMedicamentoParameter: string;
   searchPacienteParameter: string;
+  SearchMedicamentoParameter: string;
   searchDiagnosticoParameter: string;
 
+  SearchMedicamentoStatus: boolean = false;
+  searchDiagnosticoStatus: boolean = false;
+
   user: string = this.StorageService.userName;
+  cmp: string = this.StorageService.codigoCmp;
 
   private readonly unsubscribe$: Subject<void> = new Subject();
   searchMedicamentos$ = new Subject<any>();
+  searchDiagnosticos$ = new Subject<any>();
   get detalles(): FormArray {
     return this.form.get('items') as FormArray;
   }
@@ -75,45 +81,22 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
     this.getDiagnostico();
   }
 
-  addItem() {
-    const group = this.fb.group({
-      cantidad: 1,
-      precio: 14.5,
-      medicina: {
-        id: 1,
-      },
-      estado: '1',
-      fcreacion: '2021-11-04',
-      user: 'ADMIN',
-      posologia: 'cada 8 horas',
-      importe: 14.5,
-    });
-
-    this.detalles.push(group);
-  }
-
   setMedico() {
-    this.HttpService.getDatosDelMedico(this.StorageService.idMedico)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(({ cmp, medico, especialidad }) => {
-        this.StorageService.setCmp(cmp);
-
+    this.HttpService.getDatosDelMedico(this.cmp).subscribe(
+      ({ cmp, medico, especialidad }) => {
         this.form.patchValue({
           cmp,
           medicoDescripcion: medico,
           especialidad,
           medico: cmp,
         });
-      });
+      }
+    );
   }
 
   searchMedicamento({ value }) {
     this.searchMedicamentos$.next(value);
-    this.SearchMedicamentoParameter = value;
-  }
-
-  getDiagnostico() {
-    this.diagnostico$ = this.HttpService.getDiagnostico();
+    this.SearchMedicamentoStatus = true;
   }
 
   getMedicamento() {
@@ -121,13 +104,25 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       debounceTime(400),
       switchMap((searchText: string) =>
-        this.HttpService.getsearchMedicamentos(searchText)
-      )
+        this.HttpService.getsearchMedicamentos(searchText.toUpperCase())
+      ),
+      tap((_) => (this.SearchMedicamentoStatus = true))
     );
   }
 
   searchDiagnostico({ value }) {
-    this.searchDiagnosticoParameter = value;
+    this.searchDiagnosticos$.next(value);
+    this.searchDiagnosticoStatus = true;
+  }
+
+  getDiagnostico() {
+    this.diagnostico$ = this.searchDiagnosticos$.pipe(
+      distinctUntilChanged(),
+      debounceTime(400),
+      switchMap((searchText: string) =>
+        this.HttpService.getDiagnostico(searchText.toUpperCase())
+      )
+    );
   }
 
   searchPaciente({ value }) {
@@ -136,7 +131,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   selectDiagnostico({ codigo, descripcion }) {
     this.form.patchValue({ dx: codigo, descripcionDiagnostico: descripcion });
-    this.searchDiagnosticoParameter = undefined;
+    this.searchDiagnosticoStatus = false;
   }
 
   selectPaciente({ paciente, historia, id }) {
@@ -157,11 +152,11 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
     });
 
     this.detalles.push(item);
-    this.SearchMedicamentoParameter = undefined;
-
     this.detalles.valueChanges
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((_) => this.cacularSubtotal(item));
+
+    this.SearchMedicamentoStatus = false;
   }
 
   cacularSubtotal(item: FormGroup) {

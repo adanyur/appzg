@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { RecetaMedica } from '../models';
 
 import { StorageService } from '../../../core/services';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,12 @@ export class ServicesService {
     private http: HttpClient,
     private StorageService: StorageService
   ) {}
+
+  private __dataMedico = new BehaviorSubject<any>(null);
+
+  get dataMedica() {
+    return this.__dataMedico;
+  }
 
   moldearData = (data: any) => data.map((value) => new RecetaMedica(value));
 

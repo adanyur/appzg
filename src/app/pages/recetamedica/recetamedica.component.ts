@@ -9,4 +9,5 @@ export class RecetamedicaComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  s;
 }
