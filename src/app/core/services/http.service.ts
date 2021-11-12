@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
-import { Paciente, Diagnosticos } from '../models';
+import { Paciente, Diagnosticos, Medico } from '../models';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -20,10 +20,12 @@ export class HttpService {
       .pipe(map((value) => this.modelarDataPacienteSearch(value)));
   }
 
-  getDatosDelMedico(codigoMedico: string) {
-    return this.http.get(
-      `${environment.apiUrl}/api/catalogo/filtrar-medico?cmp=${codigoMedico}`
-    );
+  getDatosDelMedico(idMedico: string) {
+    return this.http
+      .get(
+        `${environment.apiUrl}/api/catalogo/filtrar-medicoid?iduser=${idMedico}`
+      )
+      .pipe(map((data: any) => new Medico(data)));
   }
 
   getsearchMedicamentos(searchText: string) {

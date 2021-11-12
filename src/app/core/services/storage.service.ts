@@ -6,11 +6,19 @@ import { Injectable } from '@angular/core';
 export class StorageService {
   constructor() {}
 
-  setData({ nombre, access_token, expires_in, token_type, cmp }) {
+  setData({ nombre, access_token, expires_in, token_type, ID }) {
     localStorage.setItem('user', nombre);
     localStorage.setItem('token', `${token_type} ${access_token}`);
     localStorage.setItem('expire', expires_in);
-    localStorage.setItem('cmp', cmp);
+    localStorage.setItem('id', ID);
+  }
+
+  setCmp(codigoCmp: string) {
+    localStorage.setItem('cmp', codigoCmp);
+  }
+
+  get codigoCmp() {
+    return localStorage.getItem('cmp');
   }
 
   get userName() {
@@ -21,8 +29,8 @@ export class StorageService {
     return localStorage.getItem('token');
   }
 
-  get codigoCmp() {
-    return localStorage.getItem('cmp');
+  get idMedico() {
+    return localStorage.getItem('id');
   }
 
   clearLocalstorage() {

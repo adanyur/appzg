@@ -53,14 +53,13 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    let codigoMedicoCmp = this.StorageService.codigoCmp;
     this.form = this.fb.group({
       historia: [null],
       cliente: [null],
       paciente: [null],
       cmp: [{ value: null, disabled: true }],
       medicoDescripcion: [{ value: null, disabled: true }],
-      medico: [codigoMedicoCmp],
+      medico: [null],
       dpto: ['12'],
       especialidad: [{ value: null, disabled: true }],
       dx: [null],
@@ -94,14 +93,16 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
   }
 
   setMedico() {
-    this.HttpService.getDatosDelMedico(this.StorageService.codigoCmp)
+    this.HttpService.getDatosDelMedico(this.StorageService.idMedico)
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((data) => {
-        const { nomelemento, codmedico, codespecialidad } = data[0];
+      .subscribe(({ cmp, medico, especialidad }) => {
+        this.StorageService.setCmp(cmp);
+
         this.form.patchValue({
-          cmp: codmedico,
-          medicoDescripcion: nomelemento,
-          especialidad: codespecialidad,
+          cmp,
+          medicoDescripcion: medico,
+          especialidad,
+          medico: cmp,
         });
       });
   }
