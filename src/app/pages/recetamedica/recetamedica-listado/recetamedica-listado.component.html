@@ -13,9 +13,11 @@
     <div class="group__form">
       <button type="button" class="btn">Buscar</button>
     </div>
-    <button type="button" (click)="onRegistrar()" class="btn h__45 prl_1">
-      + Agregar
-    </button>
+    <div class="group__form group__flex">
+      <button type="button" (click)="onRegistrar()" class="btn">
+        + Agregar
+      </button>
+    </div>
   </div>
 
   <div class="table__desktop">
@@ -31,8 +33,8 @@
     </div>
     <div class="table" *ngFor="let data of datas$ | async">
       <div class="row__header">
-        <div class="cell">Tipo documento</div>
-        <div class="cell">N° documento</div>
+        <div class="cell">Tipo doc.</div>
+        <div class="cell">N° doc.</div>
         <div class="cell">Nombre</div>
         <div class="cell">Apellido</div>
         <div class="cell">Edad</div>
@@ -48,14 +50,24 @@
         <div class="cell">{{ data.edad }}</div>
         <div class="cell">{{ data.genero }}</div>
         <div class="cell">{{ data.diagnostico }}</div>
-        <div class="cell" (click)="viewPdf(data)">
+        <div class="cell">
           <a [href]="data.urlPdf" target="_blank">
             <img
-              src="../../../../assets/icon/pdf.png"
+              src="../../../../assets/icon/pdf__blackWhite.png"
               width="30px"
               height="30px"
             />
           </a>
+          <img
+            src="../../../../assets/icon/delete_black_white.svg"
+            width="30px"
+            height="30px"
+          />
+          <img
+            src="../../../../assets/icon/lupa.png"
+            width="30px"
+            height="30px"
+          />
         </div>
       </div>
     </div>

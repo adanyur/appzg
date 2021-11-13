@@ -1,6 +1,6 @@
 .text__title {
   font-weight: 600;
-  font-size: 3em;
+  font-size: 2em;
   text-align: center;
   margin-bottom: 3rem;
 }
@@ -60,6 +60,10 @@
 }
 
 @media (min-width: 768px) and (min-width: 992px) {
+  .text__title {
+    font-size: 3em;
+  }
+
   .row__item {
     display: flex;
     margin-bottom: 1.5rem;
@@ -117,7 +121,7 @@
   }
 
   .btn {
-    width: 20%;
+    width: 30%;
   }
 
   .mr_1 {
@@ -128,11 +132,16 @@
     width: 30%;
   }
 
-  .h__45 {
-    height: 45px;
+  .group__flex {
+    display: flex;
+    justify-content: flex-end;
   }
 
-  .prl_1 {
+  /* .h__45 {
+    height: 45px;
+  } */
+
+  /* .prl_1 {
     padding: 0 1.5rem;
-  }
+  } */
 }
