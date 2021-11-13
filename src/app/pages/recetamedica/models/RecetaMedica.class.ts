@@ -1,3 +1,5 @@
+import { environment } from '../../../../environments/environment';
+
 export class RecetaMedica {
   public tipoDeDocumento: string;
   public numeroDeDocumento: string;
@@ -7,6 +9,7 @@ export class RecetaMedica {
   public genero: string;
   public diagnostico: string;
   public idReceta: number;
+  public urlPdf: string;
 
   constructor({
     cliente: { nombre, apellido, numdoc, tipodoc },
@@ -21,6 +24,7 @@ export class RecetaMedica {
     this.genero = 'Masculino';
     this.diagnostico = dx;
     this.idReceta = id_receta;
+    this.urlPdf = `${environment.apiUrl}/api/pdf/generate?idfactura=${id_receta}`;
   }
 
   get descripcionTipoDeDocumento() {

@@ -49,14 +49,13 @@
         <div class="cell">{{ data.genero }}</div>
         <div class="cell">{{ data.diagnostico }}</div>
         <div class="cell" (click)="viewPdf(data)">
-          <img
-            src="../../../../assets/icon/pdf.png"
-            width="30px"
-            height="30px"
-          />
-          <a href="../../../../assets/doc/plantilla index.pdf" target="_blank"
-            >PDF</a
-          >
+          <a [href]="data.urlPdf" target="_blank">
+            <img
+              src="../../../../assets/icon/pdf.png"
+              width="30px"
+              height="30px"
+            />
+          </a>
         </div>
       </div>
     </div>

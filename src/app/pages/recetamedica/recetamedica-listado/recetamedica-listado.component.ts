@@ -5,7 +5,7 @@ import { ServicesService } from '../services/services.service';
 import { HttpService, StorageService } from '../../../core/services';
 
 import * as moment from 'moment';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recetamedica-listado',
@@ -30,7 +30,7 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
   onRecetaMedica(fecha: any) {
     this.datas$ = this.ServicesService.getbandejaRctMedico(
       moment(fecha).format('DD-MM-YYYY')
-    );
+    ).pipe(tap(console.log));
   }
 
   onRegistrar() {
