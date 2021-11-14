@@ -60,12 +60,12 @@ export const MODULOS = [
   },
 
   {
-    name: 'Orden Medica',
+    name: 'Generar Orden',
     icon: 'assets/icon/calendar.svg',
     url: '../home/ordenmedica',
   },
   {
-    name: 'Receta Medica',
+    name: 'Generar Receta',
     icon: 'assets/icon/medical-results.svg',
     url: '../home/recetamedica',
   },
