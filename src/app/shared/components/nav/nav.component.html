@@ -3,7 +3,12 @@
     <img src="assets/icon/peru.svg" class="mr__05rem" />
     <span>Portal medico Perú</span>
   </div>
-  <div class="nav__item p__0" (click)="logout()" *ngIf="userName">
+  <div
+    class="nav__item text__center flex_column"
+    (click)="logout()"
+    *ngIf="userName"
+  >
     <img src="assets/icon/user.svg" />
+    <span>{{ userName }}</span>
   </div>
 </nav>

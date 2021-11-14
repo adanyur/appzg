@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, of, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -55,7 +56,8 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
     private StorageService: StorageService,
     private HttpService: HttpService,
     private ServicesService: ServicesService,
-    private MessagesModalService: MessagesModalService
+    private MessagesModalService: MessagesModalService,
+    private Router: Router
   ) {}
 
   ngOnInit(): void {
@@ -186,6 +188,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
       );
       this.form.reset();
       this.detalles.clear();
+      this.Router.navigate(['home/recetamedica']);
     });
   }
 

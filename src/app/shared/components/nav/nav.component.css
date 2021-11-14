@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #005ead;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .nav__item {
@@ -16,8 +16,25 @@
   cursor: pointer;
 }
 
+.text__center {
+  text-align: center;
+}
+
 .mr__05rem {
   margin-right: 0.5rem;
+}
+
+.p__0 {
+  padding: 0;
+}
+
+span {
+  color: #fff;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
 }
 
 /* .image__icon {
