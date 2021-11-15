@@ -81,6 +81,40 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
     this.setMedico();
     this.getMedicamento();
     this.getDiagnostico();
+    this.setDataReceta();
+  }
+
+  setDataReceta() {
+    this.ServicesService.dataReceta
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((data) => {
+        this.form.patchValue(data);
+        data.items.map(
+          ({
+            cantidad,
+            precio,
+            medicina: { id, nombre },
+            posologia,
+            importe,
+            user,
+            estado,
+          }) => {
+            console.log({ id, nombre });
+            const group = this.fb.group({
+              cantidad,
+              precio,
+              medicina: id,
+              descripcion: nombre,
+              posologia,
+              importe,
+              user,
+              estado,
+            });
+
+            this.detalles.push(group);
+          }
+        );
+      });
   }
 
   setMedico() {

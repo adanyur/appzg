@@ -43,7 +43,7 @@
             <img src="assets/icon/delete_black_white.svg" class="img__icon" />
             <span>Eliminar</span>
           </div>
-          <div class="dropdown__item">
+          <div class="dropdown__item" (click)="onViews(data)">
             <img src="assets/icon/lupa.png" class="img__icon" />
             <span>views</span>
           </div>
@@ -94,7 +94,7 @@
                 />
                 <span>Eliminar</span>
               </div>
-              <div class="dropdown__item">
+              <div class="dropdown__item" (click)="onViews(data)">
                 <img src="assets/icon/lupa.png" class="img__icon" />
                 <span>views</span>
               </div>

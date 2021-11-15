@@ -4,6 +4,8 @@ import { Observable, Subject } from 'rxjs';
 import { ServicesService } from '../services/services.service';
 import { HttpService, StorageService } from '../../../core/services';
 
+import { RecetaMedicaViews } from '../models';
+
 import * as moment from 'moment';
 import { takeUntil, tap } from 'rxjs/operators';
 
@@ -30,15 +32,22 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
   onRecetaMedica(fecha: any) {
     this.datas$ = this.ServicesService.getbandejaRctMedico(
       moment(fecha).format('DD-MM-YYYY')
-    ).pipe(tap(console.log));
+    );
   }
 
   onRegistrar() {
     this.Router.navigate(['home/recetamedica/registrar']);
   }
 
-  viewPdf({ idReceta }) {
-    this.ServicesService.viewPDF(idReceta).subscribe(console.log);
+  onViews({ idReceta }) {
+    this.ServicesService.getrecetaData(idReceta)
+      .pipe(
+        tap((data: any) =>
+          this.ServicesService.dataReceta.next(new RecetaMedicaViews(data))
+        ),
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe((_) => this.Router.navigate(['home/recetamedica/registrar']));
   }
 
   ngOnDestroy(): void {

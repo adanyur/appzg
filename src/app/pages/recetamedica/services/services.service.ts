@@ -16,10 +16,10 @@ export class ServicesService {
     private StorageService: StorageService
   ) {}
 
-  private __dataMedico = new BehaviorSubject<any>(null);
+  private __dataReceta = new BehaviorSubject<any>(null);
 
-  get dataMedica() {
-    return this.__dataMedico;
+  get dataReceta() {
+    return this.__dataReceta;
   }
 
   moldearData = (data: any) => data.map((value) => new RecetaMedica(value));
@@ -36,9 +36,7 @@ export class ServicesService {
     return this.http.post(`${environment.apiUrl}/api/recetas`, data);
   }
 
-  viewPDF(idReceta: number) {
-    return this.http.get(
-      `${environment.apiUrl}/api/pdf/generate?idfactura=${idReceta}`
-    );
+  getrecetaData(idReceta: string) {
+    return this.http.get(`${environment.apiUrl}/api/recetas/${idReceta}`);
   }
 }
