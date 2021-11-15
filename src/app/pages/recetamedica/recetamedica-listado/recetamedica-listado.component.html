@@ -10,9 +10,6 @@
       />
       <label class="label__control">Ingresa la fecha</label>
     </div>
-    <!-- <div class="group__form">
-      <button type="button" class="btn">Buscar</button>
-    </div> -->
     <div class="group__form group__flex">
       <button type="button" (click)="onRegistrar()" class="btn">
         + Agregar
@@ -31,45 +28,84 @@
       <div class="cell">Diagnostico</div>
       <div class="cell">&nbsp;</div>
     </div>
-    <div class="table" *ngFor="let data of datas$ | async">
-      <div class="row__header">
-        <div class="cell">Tipo doc.</div>
-        <div class="cell">N° doc.</div>
-        <div class="cell">Nombre</div>
-        <div class="cell">Apellido</div>
-        <div class="cell">Edad</div>
-        <div class="cell">Genero</div>
-        <div class="cell">Diagnostico</div>
-        <div class="cell">&nbsp;</div>
-      </div>
-      <div class="row__body">
-        <div class="cell">{{ data.descripcionTipoDeDocumento }}</div>
-        <div class="cell">{{ data.numeroDeDocumento }}</div>
-        <div class="cell">{{ data.nombre }}</div>
-        <div class="cell">{{ data.apellido }}</div>
-        <div class="cell">{{ data.edad }}</div>
-        <div class="cell">{{ data.genero }}</div>
-        <div class="cell">{{ data.diagnostico }}</div>
-        <div class="cell">
+
+    <ng-container *ngFor="let data of datas$ | async">
+      <div class="menu__movil dropdown">
+        <img src="assets//icon/menu.png" class="actions__icons" />
+        <div class="dropdown__content">
           <a [href]="data.urlPdf" target="_blank">
-            <img
-              src="../../../../assets/icon/pdf__blackWhite.png"
-              width="30px"
-              height="30px"
-            />
+            <div class="dropdown__item">
+              <img src="assets/icon/pdf__blackWhite.png" class="img__icon" />
+              <span>PDF</span>
+            </div>
           </a>
-          <img
-            src="../../../../assets/icon/delete_black_white.svg"
-            width="30px"
-            height="30px"
-          />
-          <img
-            src="../../../../assets/icon/lupa.png"
-            width="30px"
-            height="30px"
-          />
+          <div class="dropdown__item">
+            <img src="assets/icon/delete_black_white.svg" class="img__icon" />
+            <span>Eliminar</span>
+          </div>
+          <div class="dropdown__item">
+            <img src="assets/icon/lupa.png" class="img__icon" />
+            <span>views</span>
+          </div>
+          <div class="dropdown__item">
+            <img src="assets/icon/editar-texto.png" class="img__icon" />
+            <span>Editar</span>
+          </div>
         </div>
       </div>
-    </div>
+      <div class="table">
+        <div class="row__header">
+          <div class="cell">Tipo doc.</div>
+          <div class="cell">N° doc.</div>
+          <div class="cell">Nombre</div>
+          <div class="cell">Apellido</div>
+          <div class="cell">Edad</div>
+          <div class="cell">Genero</div>
+          <div class="cell">Diagnostico</div>
+          <div class="cell menu__desktop">&nbsp;</div>
+        </div>
+        <div class="row__body">
+          <div class="cell">{{ data.descripcionTipoDeDocumento }}</div>
+          <div class="cell">{{ data.numeroDeDocumento }}</div>
+          <div class="cell">{{ data.nombre }}</div>
+          <div class="cell">{{ data.apellido }}</div>
+          <div class="cell">{{ data.edad }}</div>
+          <div class="cell">{{ data.genero }}</div>
+          <div class="cell">{{ data.diagnostico }}</div>
+          <div class="cell dropdown menu__desktop">
+            <img
+              src="assets/icon/settings__option.svg"
+              class="actions__icons"
+            />
+            <div class="dropdown__content">
+              <a [href]="data.urlPdf" target="_blank">
+                <div class="dropdown__item">
+                  <img
+                    src="assets/icon/pdf__blackWhite.png"
+                    class="img__icon"
+                  />
+                  <span>PDF</span>
+                </div>
+              </a>
+              <div class="dropdown__item">
+                <img
+                  src="assets/icon/delete_black_white.svg"
+                  class="img__icon"
+                />
+                <span>Eliminar</span>
+              </div>
+              <div class="dropdown__item">
+                <img src="assets/icon/lupa.png" class="img__icon" />
+                <span>views</span>
+              </div>
+              <div class="dropdown__item">
+                <img src="assets/icon/editar-texto.png" class="img__icon" />
+                <span>Editar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
