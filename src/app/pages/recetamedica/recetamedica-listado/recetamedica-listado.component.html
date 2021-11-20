@@ -29,9 +29,18 @@
       <div class="cell">&nbsp;</div>
     </div>
 
-    <ng-container *ngFor="let data of datas$ | async">
+    <ng-container *ngFor="let data of datas$ | async; index as i">
       <div class="menu__movil dropdown">
-        <img src="assets//icon/menu.png" class="actions__icons" />
+        <input
+          type="checkbox"
+          id="{{ 'settings' + i }}"
+          name="settings"
+          class="input__checkbox"
+        />
+        <label class="label__checkbox" for="{{ 'settings' + i }}">
+          <img src="assets//icon/menu.png" class="actions__icons" />
+        </label>
+
         <div class="dropdown__content">
           <a [href]="data.urlPdf" target="_blank">
             <div class="dropdown__item">
