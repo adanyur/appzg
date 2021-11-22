@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { RecetamedicaRoutingModule } from './recetamedica-routing.module';
 import { RecetamedicaComponent } from './recetamedica.component';
@@ -21,6 +22,7 @@ import { RecetamedicaRegistrarComponent } from './recetamedica-registrar/recetam
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
 })
 export class RecetamedicaModule {}

@@ -16,7 +16,6 @@
       </button>
     </div>
   </div>
-
   <div class="table__desktop">
     <div class="row__header__desktop">
       <div class="cell">Tipo doc.</div>
@@ -26,10 +25,18 @@
       <div class="cell">Edad</div>
       <div class="cell">Genero</div>
       <div class="cell">Diagnostico</div>
-      <div class="cell">&nbsp;</div>
+      <div class="cell">
+        <img src="assets/icon/lupa.png" class="img__icon__search" />
+      </div>
     </div>
-
-    <ng-container *ngFor="let data of datas$ | async; index as i">
+    <ng-container
+      *ngFor="
+        let data of datas$
+          | async
+          | paginate: { itemsPerPage: 5, currentPage: p };
+        index as i
+      "
+    >
       <div class="menu__movil dropdown">
         <input
           type="checkbox"
@@ -62,7 +69,7 @@
           </div>
         </div>
       </div>
-      <div class="table">
+      <div class="table__">
         <div class="row__header">
           <div class="cell">Tipo doc.</div>
           <div class="cell">N° doc.</div>
@@ -116,5 +123,8 @@
         </div>
       </div>
     </ng-container>
+  </div>
+  <div class="table__footer">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>

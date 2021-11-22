@@ -17,6 +17,9 @@ import { takeUntil, tap } from 'rxjs/operators';
 export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
   agendaMedica$: Observable<any>;
   datas$: Observable<any>;
+
+  p: number = 0;
+
   private readonly unsubscribe$: Subject<void> = new Subject();
   constructor(
     private Router: Router,
