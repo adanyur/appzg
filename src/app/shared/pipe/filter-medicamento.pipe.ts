@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterMedicamentoPipe implements PipeTransform {
   transform(data: any[], searchText: string): any[] {
     if (!searchText) return data;
-    return data.filter(({ descripcion }) =>
-      descripcion.includes(searchText.toUpperCase())
+    return data.filter(({ numeroDeDocumento }) =>
+      numeroDeDocumento.includes(searchText.toUpperCase())
     );
   }
 }

@@ -17,7 +17,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
   agendaMedica$: Observable<any>;
   datas$: Observable<any>;
-
+  parameterSearch: string;
   p: number = 0;
 
   private readonly unsubscribe$: Subject<void> = new Subject();
@@ -30,6 +30,10 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.onRecetaMedica(moment());
+  }
+
+  Search({ value }) {
+    this.parameterSearch = value;
   }
 
   onRecetaMedica(fecha: any) {

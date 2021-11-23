@@ -213,7 +213,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(new FormRecetaMedica(this.form.value));
+    // console.log(new FormRecetaMedica(this.form.value));
     this.ServicesService.postRegistroRecetaMedica(
       new FormRecetaMedica(this.form.value)
     ).subscribe((data) => {

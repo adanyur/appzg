@@ -25,15 +25,28 @@
       <div class="cell">Edad</div>
       <div class="cell">Genero</div>
       <div class="cell">Diagnostico</div>
-      <div class="cell">
-        <img src="assets/icon/lupa.png" class="img__icon__search" />
+      <div class="cell dropdown">
+        <input type="checkbox" class="input__checkbox" id="search" />
+        <label class="label__" for="search">
+          <img src="assets/icon/search__black.svg" class="img__icon__search" />
+        </label>
+        <div class="content__search">
+          <input
+            type="search"
+            class="input__search"
+            autofocus
+            placeholder="Buscar paciente"
+            (keyup)="Search($event.target)"
+          />
+        </div>
       </div>
     </div>
     <ng-container
       *ngFor="
         let data of datas$
           | async
-          | paginate: { itemsPerPage: 5, currentPage: p };
+          | paginate: { itemsPerPage: 3, currentPage: p }
+          | filterMedicamento: parameterSearch;
         index as i
       "
     >
