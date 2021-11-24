@@ -15,6 +15,15 @@
         + Agregar
       </button>
     </div>
+    <div class="group__form menu__movil">
+      <input
+        type="search"
+        placeholder="Busqueda de paciente por documento,nombre"
+        class="input__control"
+        (keyup)="Search($event.target)"
+      />
+      <label class="label__control">Buscar paciente</label>
+    </div>
   </div>
   <div class="table__desktop">
     <div class="row__header__desktop">
