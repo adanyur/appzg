@@ -1,4 +1,7 @@
-<div class="container flex__column animate__animated animate__fadeIn">
+<div
+  class="container flex__column animate__animated animate__fadeIn"
+  *ngIf="datas$ | async as datas"
+>
   <h1 class="text__title">Receta Medica</h1>
 
   <div class="group__flex">
@@ -32,7 +35,7 @@
       />
       <label class="label__control">Ingresa la fecha</label>
     </div>
-    <div class="group__form group__flex">
+    <div class="group__form group__flex" *ngIf="datas.length > 0">
       <button type="button" (click)="onRegistrar()" class="btn">
         + Agregar
       </button>
@@ -47,7 +50,7 @@
       <label class="label__control">Buscar paciente</label>
     </div>
   </div>
-  <div class="table__desktop">
+  <div class="table__desktop" *ngIf="datas.length > 0; else message">
     <div class="row__header__desktop">
       <div class="cell">Tipo doc.</div>
       <div class="cell">N° doc.</div>
@@ -74,8 +77,7 @@
     </div>
     <ng-container
       *ngFor="
-        let data of datas$
-          | async
+        let data of datas
           | paginate: { itemsPerPage: 3, currentPage: p }
           | filterMedicamento: parameterSearch;
         index as i
@@ -113,7 +115,7 @@
           </div>
         </div>
       </div>
-      <div class="table__">
+      <div class="table__ {{ data.status }}">
         <div class="row__header">
           <div class="cell">Tipo doc.</div>
           <div class="cell">N° doc.</div>
@@ -167,8 +169,18 @@
         </div>
       </div>
     </ng-container>
-  </div>
-  <div class="table__footer">
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="table__footer">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
   </div>
 </div>
+
+<ng-template #message>
+  <div class="container__car">
+    <div class="card" (click)="onRegistrar()">
+      <img src="../../../../assets/icon/new-document.png" class="img__lg" />
+      <h3 class="title__h1">No hay data</h3>
+      <button class="btn__" (click)="onRegistrar()">Agregar receta</button>
+    </div>
+  </div>
+</ng-template>

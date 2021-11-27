@@ -195,8 +195,6 @@ input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   border: 1px solid #dadce0;
-  /* border: none; */
-  /* transform: scale(0.7); */
 }
 
 .leyenda__item {
@@ -225,9 +223,67 @@ input[type="checkbox"] {
   background-color: #fff3cd;
   border-color: #ffeeba;
 }
+
 .status__succes {
   background-color: #d4edda;
   border-color: #c3e6cb;
+}
+
+.table__danger {
+  border: 1px solid #f5c6cb;
+}
+
+.table__info {
+  border: 1px solid #b8daff;
+}
+
+.table__warning {
+  border: 1px solid #ffeeba;
+}
+
+.table__succes {
+  border: 1px solid #c3e6cb;
+}
+
+.card {
+  width: 100%;
+  border: 1px solid red;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #dadce0;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.card:hover {
+  border: 1px solid #005ead;
+}
+
+.img__lg {
+  opacity: 0.5;
+  height: 100px;
+}
+
+.title__h1 {
+  color: #828282;
+  opacity: 0.5;
+  text-align: center;
+}
+
+.btn__ {
+  width: 100%;
+  padding: 1rem;
+  background: #005ead;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1em;
+  border: none;
+  outline: none;
+  border-radius: 1.5rem;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) and (min-width: 992px) {
@@ -343,5 +399,39 @@ input[type="checkbox"] {
 
   .leyenda__item {
     justify-content: space-around;
+  }
+
+  .borde__status_danger {
+    border-right: 0.5rem solid #f5c6cb;
+  }
+
+  .borde__status__info {
+    border-right: 0.5rem solid #b8daff;
+  }
+
+  .borde__status__warning {
+    border-right: 0.5rem solid #ffeeba;
+  }
+
+  .borde__status__succes {
+    border-right: 0.5rem solid #c3e6cb;
+  }
+
+  .card {
+    width: 50%;
+  }
+
+  .btn__ {
+    width: 40%;
+  }
+
+  /* .flex__column {
+    align-items: center;
+  } */
+
+  .container__car {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
