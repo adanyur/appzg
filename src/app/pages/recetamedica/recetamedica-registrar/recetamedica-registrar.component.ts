@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {
   debounceTime,
   distinctUntilChanged,
+  finalize,
   switchMap,
   takeUntil,
   tap,
@@ -62,7 +63,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      historia: [null],
+      historia: [{ value: null, disabled: true }],
       cliente: [null],
       paciente: [null],
       cmp: [{ value: null, disabled: true }],
@@ -70,7 +71,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
       medico: [null],
       dpto: ['12'],
       especialidad: [{ value: null, disabled: true }],
-      dx: [null],
+      dx: [{ value: null, disabled: true }],
       nota: [null],
       descripcionDiagnostico: [null],
       items: this.fb.array([]),
@@ -99,7 +100,6 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
             user,
             estado,
           }) => {
-            console.log({ id, nombre });
             const group = this.fb.group({
               cantidad,
               precio,
@@ -132,7 +132,6 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   searchMedicamento({ value }) {
     this.searchMedicamentos$.next(value);
-    this.SearchMedicamentoStatus = true;
   }
 
   getMedicamento() {
@@ -142,13 +141,12 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
       switchMap((searchText: string) =>
         this.HttpService.getsearchMedicamentos(searchText.toUpperCase())
       ),
-      tap((_) => (this.SearchMedicamentoStatus = true))
+      tap(() => (this.SearchMedicamentoStatus = true))
     );
   }
 
   searchDiagnostico({ value }) {
     this.searchDiagnosticos$.next(value);
-    this.searchDiagnosticoStatus = true;
   }
 
   getDiagnostico() {
@@ -157,7 +155,8 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
       debounceTime(400),
       switchMap((searchText: string) =>
         this.HttpService.getDiagnostico(searchText.toUpperCase())
-      )
+      ),
+      tap(() => (this.searchDiagnosticoStatus = true))
     );
   }
 
@@ -213,17 +212,17 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    // console.log(new FormRecetaMedica(this.form.value));
-    this.ServicesService.postRegistroRecetaMedica(
-      new FormRecetaMedica(this.form.value)
-    ).subscribe((data) => {
-      this.MessagesModalService.messageSuccesSave(
-        '¡Se Registro Correctamente!'
-      );
-      this.form.reset();
-      this.detalles.clear();
-      this.Router.navigate(['home/recetamedica']);
-    });
+    console.log(new FormRecetaMedica(this.form.getRawValue()));
+    // this.ServicesService.postRegistroRecetaMedica(
+    //   new FormRecetaMedica(this.form.getRawValue())
+    // ).subscribe((data) => {
+    //   this.MessagesModalService.messageSuccesSave(
+    //     '¡Se Registro Correctamente!'
+    //   );
+    //   this.form.reset();
+    //   this.detalles.clear();
+    //   this.Router.navigate(['home/recetamedica']);
+    // });
   }
 
   ngOnDestroy(): void {

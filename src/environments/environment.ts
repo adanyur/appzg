@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://heroku-app-medica.herokuapp.com',
+  apiUrl: 'http://3.239.36.177:8080/appMedicalApiRestFull',
 };
 
 /*

@@ -88,19 +88,20 @@
           (keyup)="searchDiagnostico($event.target)"
         />
         <label class="label__control">Descripcion</label>
-
-        <div
-          class="dropdown__content animate__animated animate__fadeIn"
-          *ngIf="searchDiagnosticoStatus"
-        >
+        <ng-containe *ngIf="diagnostico$ | async as diagnostico">
           <div
-            (click)="selectDiagnostico(diagnostico)"
-            class="dropdown__item"
-            *ngFor="let diagnostico of diagnostico$ | async"
+            class="dropdown__content animate__animated animate__fadeIn"
+            *ngIf="searchDiagnosticoStatus"
           >
-            {{ diagnostico.descripcion | titlecase }}
+            <div
+              (click)="selectDiagnostico(diagnostico)"
+              class="dropdown__item"
+              *ngFor="let diagnostico of diagnostico"
+            >
+              {{ diagnostico.descripcion | titlecase }}
+            </div>
           </div>
-        </div>
+        </ng-containe>
       </div>
     </div>
     <div class="group__form">
@@ -121,18 +122,20 @@
         (keyup)="searchMedicamento($event.target)"
       />
       <label for="" class="label__control">medicamento</label>
-      <div
-        class="dropdown__content animate__animated animate__fadeIn"
-        *ngIf="SearchMedicamentoStatus"
-      >
+      <ng-container *ngIf="medicamentos$ | async as medicamentos">
         <div
-          (click)="selectMedicamento(medicamento)"
-          class="dropdown__item"
-          *ngFor="let medicamento of medicamentos$ | async"
+          class="dropdown__content animate__animated animate__fadeIn"
+          *ngIf="SearchMedicamentoStatus"
         >
-          {{ medicamento.nombre | titlecase }}
+          <div
+            (click)="selectMedicamento(medicamento)"
+            class="dropdown__item"
+            *ngFor="let medicamento of medicamentos"
+          >
+            {{ medicamento.nombre | titlecase }}
+          </div>
         </div>
-      </div>
+      </ng-container>
     </div>
 
     <div class="table__desktop">
