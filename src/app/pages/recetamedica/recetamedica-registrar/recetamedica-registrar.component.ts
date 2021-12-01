@@ -213,16 +213,16 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log(new FormRecetaMedica(this.form.getRawValue()));
-    // this.ServicesService.postRegistroRecetaMedica(
-    //   new FormRecetaMedica(this.form.getRawValue())
-    // ).subscribe((data) => {
-    //   this.MessagesModalService.messageSuccesSave(
-    //     '¡Se Registro Correctamente!'
-    //   );
-    //   this.form.reset();
-    //   this.detalles.clear();
-    //   this.Router.navigate(['home/recetamedica']);
-    // });
+    this.ServicesService.postRegistroRecetaMedica(
+      new FormRecetaMedica(this.form.getRawValue())
+    ).subscribe((data) => {
+      this.MessagesModalService.messageSuccesSave(
+        '¡Se Registro Correctamente!'
+      );
+      this.form.reset();
+      this.detalles.clear();
+      this.Router.navigate(['home/recetamedica']);
+    });
   }
 
   ngOnDestroy(): void {
