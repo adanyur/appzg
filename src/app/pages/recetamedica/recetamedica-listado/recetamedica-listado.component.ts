@@ -19,6 +19,7 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
   datas$: Observable<any>;
   parameterSearch: string;
   p: number = 0;
+  urlFirma: string;
 
   private readonly unsubscribe$: Subject<void> = new Subject();
   constructor(
@@ -30,6 +31,7 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.onRecetaMedica(moment());
+    this.urlFirma = this.ServicesService.urlWatana;
   }
 
   Search({ value }) {

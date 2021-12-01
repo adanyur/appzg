@@ -3,6 +3,7 @@
   *ngIf="datas$ | async as datas"
 >
   <h1 class="text__title">Receta Medica</h1>
+  <a [href]="urlFirma">Firma</a>
   <div class="group__flex">
     <fieldset class="container__leyenda">
       <legend>Leyenda</legend>
@@ -173,7 +174,6 @@
     </div>
   </div>
 </div>
-
 <ng-template #message>
   <div class="container__car">
     <div class="card" (click)="onRegistrar()">

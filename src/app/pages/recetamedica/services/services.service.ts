@@ -22,6 +22,10 @@ export class ServicesService {
     return this.__dataReceta;
   }
 
+  get urlWatana() {
+    return `watana:?url_descarga=${environment.url_descarga}&url_subida=${environment.url_subida}&firma_x=${environment.firma_x}&firma_y=${environment.firma_y}&firma_largo=${environment.firma_largo}&firma_alto=${environment.firma_alto}&firma_texto=${environment.firma_texto}&firma_pagina=${environment.firma_pagina}`;
+  }
+
   moldearData = (data: any) => data.map((value) => new RecetaMedica(value));
 
   getbandejaRctMedico(fecha: string) {
