@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { ServicesService } from '../services/services.service';
@@ -19,19 +20,24 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
   datas$: Observable<any>;
   parameterSearch: string;
   p: number = 0;
-  urlFirma: string;
 
   private readonly unsubscribe$: Subject<void> = new Subject();
   constructor(
     private Router: Router,
     private ServicesService: ServicesService,
     private StorageService: StorageService,
-    private HttpService: HttpService
+    private HttpService: HttpService,
+    private DomSanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
     this.onRecetaMedica(moment());
-    this.urlFirma = this.ServicesService.urlWatana;
+  }
+
+  get urlFirma() {
+    return this.DomSanitizer.bypassSecurityTrustHtml(
+      this.ServicesService.urlWatana
+    );
   }
 
   Search({ value }) {
