@@ -45,7 +45,7 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
   }
 
   onRecetaMedica(fecha: any) {
-    this.datas$ = this.ServicesService.getbandejaRctMedico(
+    this.datas$ = this.ServicesService.getbandejaRecetaMedico(
       moment(fecha).format('DD-MM-YYYY')
     );
   }

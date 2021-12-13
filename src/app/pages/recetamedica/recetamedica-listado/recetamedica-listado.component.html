@@ -3,7 +3,7 @@
   *ngIf="datas$ | async as datas"
 >
   <h1 class="text__title">Receta Medica</h1>
-  <!-- <a [href]="urlFirma">Firma</a> -->
+  <app-recetamedica-acordeon></app-recetamedica-acordeon>
   <a
     href="watana:?url_descarga=http://localhost:8080/paper.pdf&url_subida=http://localhost:8080/subir?id=paper.pdf&firma_x=315&firma_y=120&firma_largo=232&firma_alto=50&firma_texto=Firmado+por%3A+%3CSIGNER%3E%0D%0A%3CORGANIZATION%3E%0D%0AFecha%3A+%3CDATE%3E%0D%0APor+www.watana.pe&firma_pagina=1"
     >Firmar</a
@@ -63,6 +63,7 @@
       <div class="cell">Edad</div>
       <div class="cell">Genero</div>
       <div class="cell">Diagnostico</div>
+      <div class="cell">&nbsp;</div>
       <div class="cell dropdown">
         <input type="checkbox" class="input__checkbox" id="search" />
         <label class="label__" for="search">
@@ -82,7 +83,7 @@
     <ng-container
       *ngFor="
         let data of datas
-          | paginate: { itemsPerPage: 3, currentPage: p }
+          | paginate: { itemsPerPage: 5, currentPage: p }
           | filterMedicamento: parameterSearch;
         index as i
       "
@@ -119,7 +120,7 @@
           </div>
         </div>
       </div>
-      <div class="table__ {{ data.status }}">
+      <div class="table__  {{ data.status }}">
         <div class="row__header">
           <div class="cell">Tipo doc.</div>
           <div class="cell">N° doc.</div>
@@ -129,7 +130,9 @@
           <div class="cell">Genero</div>
           <div class="cell">Diagnostico</div>
           <div class="cell menu__desktop">&nbsp;</div>
+          <div class="cell menu__desktop">&nbsp;</div>
         </div>
+
         <div class="row__body">
           <div class="cell">{{ data.descripcionTipoDeDocumento }}</div>
           <div class="cell">{{ data.numeroDeDocumento }}</div>
@@ -143,6 +146,7 @@
               src="assets/icon/settings__option.svg"
               class="actions__icons"
             />
+
             <div class="dropdown__content">
               <a [href]="data.urlPdf" target="_blank">
                 <div class="dropdown__item">
@@ -170,7 +174,20 @@
               </div>
             </div>
           </div>
+          <div class="cell">
+            <label for="acordeon" class="label__acordeon">
+              <img
+                src="assets/icon/arrow-down-sign-to-navigate.png"
+                class="actions__icons"
+              />
+            </label>
+          </div>
         </div>
+        <input type="checkbox" class="input__checkbox" id="acordeon" />
+        <app-recetamedica-acordeon
+          [item]="data"
+          class="container__acordeon"
+        ></app-recetamedica-acordeon>
       </div>
     </ng-container>
     <div class="table__footer">

@@ -425,13 +425,17 @@ input[type="checkbox"] {
     width: 40%;
   }
 
-  /* .flex__column {
-    align-items: center;
-  } */
-
   .container__car {
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+
+  .container__acordeon {
+    display: none;
+  }
+
+  .input__checkbox:checked ~ .container__acordeon {
+    display: block;
   }
 }

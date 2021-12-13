@@ -19,10 +19,17 @@ export class AuthService {
     params.set('grant_type', 'password');
     params.set('username', user);
     params.set('password', password);
+
     return this.http.post(
       `${environment.apiUrl}/oauth/token`,
       params.toString(),
       { headers: httpHeaders }
+    );
+  }
+
+  getRol({ nombre }) {
+    return this.http.get(
+      `${environment.apiUrl}/api/usuario?username=${nombre}`
     );
   }
 }

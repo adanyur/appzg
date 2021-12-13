@@ -9,9 +9,10 @@ export class FormRecetaMedica {
   nota: string;
   fecha: string;
   usereg: string;
+  estado: string;
   items: [];
 
-  constructor({ cliente, medico, dpto, dx, nota, items, usereg }) {
+  constructor({ cliente, medico, dpto, dx, nota, items, usereg, estado }) {
     this.cliente = cliente;
     this.medico = medico;
     this.dpto = dpto;
@@ -20,5 +21,6 @@ export class FormRecetaMedica {
     this.fecha = moment().format('YYYY-MM-DD');
     this.usereg = usereg;
     this.items = items.map((value: any) => new FormRecetaMedicaDetalla(value));
+    this.estado = estado;
   }
 }

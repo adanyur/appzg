@@ -11,11 +11,14 @@ export class RecetaMedica {
   public idReceta: number;
   public urlPdf: string;
   public estado: string;
+  public fecha: string;
 
   constructor({
     cliente: { nombre, apellido, numdoc, tipodoc },
     dx,
     id_receta,
+    estado,
+    fecha,
   }) {
     this.nombre = nombre;
     this.apellido = apellido;
@@ -26,7 +29,8 @@ export class RecetaMedica {
     this.diagnostico = dx;
     this.idReceta = id_receta;
     this.urlPdf = `${environment.apiUrl}/api/pdf/generate?idfactura=${id_receta}`;
-    this.estado = '1';
+    this.estado = estado;
+    this.fecha = fecha;
   }
 
   get descripcionTipoDeDocumento() {

@@ -76,6 +76,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
       descripcionDiagnostico: [null],
       items: this.fb.array([]),
       usereg: [this.user],
+      estado: [this.StorageService.idrole],
     });
 
     this.pacientes$ = this.HttpService.getPacienteSearch();

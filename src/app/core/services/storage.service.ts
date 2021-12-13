@@ -13,6 +13,10 @@ export class StorageService {
     localStorage.setItem('cmp', cmp);
   }
 
+  setRol({ Role }) {
+    localStorage.setItem('idrole', Role);
+  }
+
   get codigoCmp() {
     return localStorage.getItem('cmp');
   }
@@ -23,6 +27,10 @@ export class StorageService {
 
   get token() {
     return localStorage.getItem('token');
+  }
+
+  get idrole() {
+    return localStorage.getItem('idrole');
   }
 
   clearLocalstorage() {

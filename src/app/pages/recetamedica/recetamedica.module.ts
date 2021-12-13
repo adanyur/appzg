@@ -9,12 +9,14 @@ import { RecetamedicaRoutingModule } from './recetamedica-routing.module';
 import { RecetamedicaComponent } from './recetamedica.component';
 import { RecetamedicaListadoComponent } from './recetamedica-listado/recetamedica-listado.component';
 import { RecetamedicaRegistrarComponent } from './recetamedica-registrar/recetamedica-registrar.component';
+import { RecetamedicaAcordeonComponent } from './recetamedica-listado/recetamedica-acordeon.component';
 
 @NgModule({
   declarations: [
     RecetamedicaComponent,
     RecetamedicaListadoComponent,
     RecetamedicaRegistrarComponent,
+    RecetamedicaAcordeonComponent,
   ],
   imports: [
     CommonModule,

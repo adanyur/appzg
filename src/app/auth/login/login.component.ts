@@ -58,8 +58,15 @@ export class LoginComponent implements OnInit {
       if (data) {
         this._StorageService.setData(data);
         this._MessagesModalService.messageSucces();
+        this.setRol(data);
         this._Router.navigate(['modulos']);
       }
     });
+  }
+
+  setRol(data: any) {
+    this._AuthService
+      .getRol(data)
+      .subscribe((data: any) => this._StorageService.setRol(data));
   }
 }

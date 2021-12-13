@@ -28,7 +28,7 @@ export class ServicesService {
 
   moldearData = (data: any) => data.map((value) => new RecetaMedica(value));
 
-  getbandejaRctMedico(fecha: string) {
+  getbandejaRecetaMedico(fecha: string) {
     return this.http
       .get(
         `${environment.apiUrl}/api/recetas?medico=${this.StorageService.codigoCmp}&fecha=${fecha}`
