@@ -41,6 +41,8 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
   user: string = this.StorageService.userName;
   cmp: string = this.StorageService.codigoCmp;
 
+  verbHttp: string = 'POST';
+
   private readonly unsubscribe$: Subject<void> = new Subject();
   searchMedicamentos$ = new Subject<any>();
   searchDiagnosticos$ = new Subject<any>();
@@ -50,6 +52,10 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   get tieneDetalle() {
     return this.detalles.length > 0;
+  }
+
+  get nameButton() {
+    return this.verbHttp === 'POST' ? 'Registrar' : 'Actualizar';
   }
 
   constructor(
@@ -63,6 +69,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.fb.group({
+      id: [null],
       historia: [{ value: null, disabled: true }],
       cliente: [null],
       paciente: [null],
@@ -90,31 +97,16 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
     this.ServicesService.dataReceta
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((data) => {
-        this.form.patchValue(data);
-        data.items.map(
-          ({
-            cantidad,
-            precio,
-            medicina: { id, nombre },
-            posologia,
-            importe,
-            user,
-            estado,
-          }) => {
-            const group = this.fb.group({
-              cantidad,
-              precio,
-              medicina: id,
-              descripcion: nombre,
-              posologia,
-              importe,
-              user,
-              estado,
-            });
-
+        if (data) {
+          this.form.patchValue(data);
+          data.items.map((data) => {
+            data['descripcion'] = data.medicina.nombre;
+            const group = this.fb.group(data);
             this.detalles.push(group);
-          }
-        );
+          });
+          this.verbHttp = 'PUT';
+          this.ServicesService.dataReceta.next(null);
+        }
       });
   }
 
@@ -132,6 +124,7 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
   }
 
   searchMedicamento({ value }) {
+    console.log(value);
     this.searchMedicamentos$.next(value);
   }
 
@@ -214,12 +207,12 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log(new FormRecetaMedica(this.form.getRawValue()));
-    this.ServicesService.postRegistroRecetaMedica(
+
+    this.ServicesService.apiDynamic(
+      this.verbHttp,
       new FormRecetaMedica(this.form.getRawValue())
     ).subscribe((data) => {
-      this.MessagesModalService.messageSuccesSave(
-        '¡Se Registro Correctamente!'
-      );
+      this.MessagesModalService.messageSuccesSave(data.mensaje);
       this.form.reset();
       this.detalles.clear();
       this.Router.navigate(['home/recetamedica']);

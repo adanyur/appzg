@@ -1,4 +1,5 @@
 export class RecetaMedicaViews {
+  public id: string;
   public historia: string;
   public cliente: {};
   public paciente: string;
@@ -19,6 +20,7 @@ export class RecetaMedicaViews {
     dx,
     nota,
     items,
+    id_receta,
   }) {
     this.historia = numdoc;
     this.cliente = { id };
@@ -29,5 +31,6 @@ export class RecetaMedicaViews {
     this.dx = dx;
     this.nota = nota;
     this.items = items;
+    this.id = id_receta;
   }
 }

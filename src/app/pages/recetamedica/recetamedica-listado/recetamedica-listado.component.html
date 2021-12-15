@@ -3,7 +3,7 @@
   *ngIf="datas$ | async as datas"
 >
   <h1 class="text__title">Receta Medica</h1>
-  <app-recetamedica-acordeon></app-recetamedica-acordeon>
+  <!-- <app-recetamedica-acordeon></app-recetamedica-acordeon> -->
   <a
     href="watana:?url_descarga=http://localhost:8080/paper.pdf&url_subida=http://localhost:8080/subir?id=paper.pdf&firma_x=315&firma_y=120&firma_largo=232&firma_alto=50&firma_texto=Firmado+por%3A+%3CSIGNER%3E%0D%0A%3CORGANIZATION%3E%0D%0AFecha%3A+%3CDATE%3E%0D%0APor+www.watana.pe&firma_pagina=1"
     >Firmar</a
@@ -175,7 +175,7 @@
             </div>
           </div>
           <div class="cell">
-            <label for="acordeon" class="label__acordeon">
+            <label for="{{ 'acordeon' + i }}" class="label__acordeon">
               <img
                 src="assets/icon/arrow-down-sign-to-navigate.png"
                 class="actions__icons"
@@ -183,7 +183,11 @@
             </label>
           </div>
         </div>
-        <input type="checkbox" class="input__checkbox" id="acordeon" />
+        <input
+          type="checkbox"
+          class="input__checkbox"
+          id="{{ 'acordeon' + i }}"
+        />
         <app-recetamedica-acordeon
           [item]="data"
           class="container__acordeon"

@@ -1,0 +1,23 @@
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table__header,
+.table__body {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+  border: 1px solid #dadce0;
+  text-align: center;
+}
+
+.table__header .cell {
+  font-weight: 600;
+}
+
+.table__header .cell,
+.table__body .cell {
+  width: 150%;
+  padding: 0.1rem 0.5rem;
+}

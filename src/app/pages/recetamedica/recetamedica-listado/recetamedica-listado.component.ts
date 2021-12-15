@@ -56,13 +56,11 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
 
   onViews({ idReceta }) {
     this.ServicesService.getrecetaData(idReceta)
-      .pipe(
-        tap((data: any) =>
-          this.ServicesService.dataReceta.next(new RecetaMedicaViews(data))
-        ),
-        takeUntil(this.unsubscribe$)
-      )
-      .subscribe((_) => this.Router.navigate(['home/recetamedica/registrar']));
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((data: any) => {
+        this.ServicesService.dataReceta.next(new RecetaMedicaViews(data));
+        this.Router.navigate(['home/recetamedica/registrar']);
+      });
   }
 
   ngOnDestroy(): void {

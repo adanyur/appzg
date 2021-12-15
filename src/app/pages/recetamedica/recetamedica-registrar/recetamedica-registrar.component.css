@@ -102,7 +102,7 @@
 }
 
 .dropdown__item:hover {
-  background: red;
+  background-color: rgba(243, 244, 246, 1);
   cursor: pointer;
 }
 

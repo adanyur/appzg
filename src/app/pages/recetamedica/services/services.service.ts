@@ -43,4 +43,13 @@ export class ServicesService {
   getrecetaData(idReceta: string) {
     return this.http.get(`${environment.apiUrl}/api/recetas/${idReceta}`);
   }
+
+  apiDynamic(verbHttp: string, data: any) {
+    const END__POINT__DYNAMIC = {
+      PUT: this.http.put(`${environment.apiUrl}/api/receta/${data.id}`, data),
+      POST: this.http.post(`${environment.apiUrl}/api/recetas/`, data),
+    };
+
+    return END__POINT__DYNAMIC[verbHttp];
+  }
 }
