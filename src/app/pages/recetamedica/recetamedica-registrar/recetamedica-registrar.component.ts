@@ -124,7 +124,6 @@ export class RecetamedicaRegistrarComponent implements OnInit, OnDestroy {
   }
 
   searchMedicamento({ value }) {
-    console.log(value);
     this.searchMedicamentos$.next(value);
   }
 

@@ -3,7 +3,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { ServicesService } from '../services/services.service';
-import { HttpService, StorageService } from '../../../core/services';
+import {
+  HttpService,
+  StorageService,
+  MessagesModalService,
+} from '../../../core/services';
 
 import { RecetaMedicaViews } from '../models';
 
@@ -27,11 +31,15 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
     private ServicesService: ServicesService,
     private StorageService: StorageService,
     private HttpService: HttpService,
-    private DomSanitizer: DomSanitizer
+    private DomSanitizer: DomSanitizer,
+    private MessagesModalService: MessagesModalService
   ) {}
 
   ngOnInit(): void {
     this.onRecetaMedica(moment());
+    this.ServicesService.regresh.subscribe((_) =>
+      this.onRecetaMedica(moment())
+    );
   }
 
   get urlFirma() {
@@ -61,6 +69,19 @@ export class RecetamedicaListadoComponent implements OnInit, OnDestroy {
         this.ServicesService.dataReceta.next(new RecetaMedicaViews(data));
         this.Router.navigate(['home/recetamedica/registrar']);
       });
+  }
+
+  onDelete({ idReceta }) {
+    const BODY__MESSAGE = {
+      title: '¿Quieres eliminar receta?',
+      icon: 'warning',
+      id: idReceta,
+    };
+
+    this.MessagesModalService.messageConfirma(
+      BODY__MESSAGE,
+      this.ServicesService
+    );
   }
 
   ngOnDestroy(): void {

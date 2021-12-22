@@ -49,7 +49,7 @@ export const MODULOS = [
     url: '../home/programacion',
   },
   {
-    name: 'Tarifario Medico',
+    name: 'Crear cliente',
     icon: 'assets/icon/calendar.svg',
     url: '../home/tarifariomedico',
   },

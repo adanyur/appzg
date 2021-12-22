@@ -46,4 +46,23 @@ export class MessagesModalService {
   messageSuccesSave(message: string) {
     swal.fire('¡¡Bien Hecho!!', `${message}`, 'success');
   }
+
+  messageConfirma({ title, icon, id }, api: any) {
+    swal
+      .fire({
+        title: title,
+        icon: icon,
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'si, OK',
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          api
+            .deleteReceta(id)
+            .subscribe(({ mensaje }) => this.messageSuccesSave(mensaje));
+        }
+      });
+  }
 }
