@@ -1,0 +1,45 @@
+<div class="container flex__column animate__animated animate__fadeIn">
+  <h1 class="text__title">Pacientes</h1>
+
+  <div class="group__form flex__end">
+    <button type="button" class="btn w__20" (click)="openModal()">
+      +agregar
+    </button>
+  </div>
+
+  <ng-container *ngIf="pacientes$ | async as pacientes">
+    <div class="table__desktop" *ngIf="pacientes.length > 0; else message">
+      <div class="row__header__desktop">
+        <div class="cell">Nombre</div>
+        <div class="cell">APellido</div>
+        <div class="cell">Email</div>
+        <div class="cell">Fecha</div>
+      </div>
+      <ng-container
+        *ngFor="
+          let paciente of pacientes
+            | paginate: { itemsPerPage: 5, currentPage: p }
+        "
+      >
+        <div class="table__">
+          <div class="row__header">
+            <div class="cell">Nombre</div>
+            <div class="cell">APellido</div>
+            <div class="cell">Email</div>
+            <div class="cell">Fecha</div>
+          </div>
+
+          <div class="row__body">
+            <div class="cell">{{ paciente.nombre }}</div>
+            <div class="cell">{{ paciente.apellido }}</div>
+            <div class="cell cell_scroll">{{ paciente.email }}</div>
+            <div class="cell">{{ paciente.createAt }}</div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="table__footer">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </ng-container>
+</div>

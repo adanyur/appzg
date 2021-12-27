@@ -49,6 +49,11 @@ const routes: Routes = [
             (m) => m.OrdenmedicaModule
           ),
       },
+      {
+        path: 'paciente',
+        loadChildren: () =>
+          import('./pacientes/pacientes.module').then((m) => m.PacientesModule),
+      },
     ],
   },
 ];

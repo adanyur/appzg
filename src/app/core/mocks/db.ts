@@ -49,9 +49,9 @@ export const MODULOS = [
     url: '../home/programacion',
   },
   {
-    name: 'Crear cliente',
+    name: 'Crear paciente',
     icon: 'assets/icon/calendar.svg',
-    url: '../home/tarifariomedico',
+    url: '../home/paciente',
   },
   {
     name: 'Resultado Medico',

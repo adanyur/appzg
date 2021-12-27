@@ -1,0 +1,102 @@
+<input
+  class="modal-btn"
+  type="checkbox"
+  id="modal-btn"
+  name="modal-btn"
+  [checked]="openModal"
+  (click)="onCloseModal()"
+/>
+<div class="modal">
+  <div class="modal-wrap">
+    <div class="modal-head">
+      <span class="modal-title">Cliente</span>
+    </div>
+    <div class="modal-body modal-scroll-y">
+      <div class="card">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+          <div class="row__item">
+            <div class="group__form mr__1">
+              <select class="input__control" formControlName="tipodoc">
+                <option value="null">Seleccionar</option>
+                <option value="1">DNI</option>
+                <option value="2">CE</option>
+              </select>
+              <label class="label__control">Tipo documento</label>
+            </div>
+
+            <div class="group__form">
+              <input
+                type="text"
+                class="input__control"
+                placeholder=" "
+                formControlName="numdoc"
+              />
+              <label class="label__control">Numero documento</label>
+            </div>
+          </div>
+
+          <div class="group__form">
+            <input
+              type="text"
+              class="input__control"
+              placeholder=" "
+              formControlName="apellido"
+            />
+            <label class="label__control">Apellido</label>
+          </div>
+          <div class="group__form">
+            <input
+              type="text"
+              class="input__control"
+              placeholder=" "
+              formControlName="nombre"
+            />
+            <label class="label__control">Nombre</label>
+          </div>
+
+          <div class="group__form">
+            <input
+              type="text"
+              class="input__control"
+              placeholder=" "
+              formControlName="email"
+            />
+            <label class="label__control">Email</label>
+          </div>
+          <div class="group__form">
+            <input
+              type="phone"
+              class="input__control"
+              placeholder=" "
+              formControlName="numcel"
+            />
+            <label class="label__control">Celulares</label>
+          </div>
+
+          <div class="row__item">
+            <div class="group__form mr__1">
+              <input
+                type="date"
+                class="input__control"
+                placeholder=" "
+                formControlName="createFn"
+                (change)="calcularEdad($event.target)"
+              />
+              <label class="label__control">Fecha de nacimiento</label>
+            </div>
+            <div class="group__form">
+              <input
+                type="text"
+                class="input__control"
+                placeholder=" "
+                formControlName="edad"
+              />
+              <label class="label__control">Edad</label>
+            </div>
+          </div>
+          <button type="submit" class="btn">Registrar paciente</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

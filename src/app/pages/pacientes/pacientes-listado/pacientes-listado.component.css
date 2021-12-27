@@ -1,0 +1,144 @@
+.text__title {
+  font-weight: 600;
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.table__ {
+  display: flex;
+  width: 100%;
+  border-radius: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 2rem 1.5rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.row__header,
+.row__body,
+.row__header__desktop {
+  display: flex;
+  flex-direction: column;
+}
+
+.row__header {
+  width: 40%;
+}
+
+.row__body {
+  width: 60%;
+}
+
+.row__header .cell,
+.row__header .cell,
+.row__body .cell,
+.row__header__desktop .cell {
+  text-align: center;
+  padding: 1rem 0.5rem;
+  height: 60px;
+  margin-bottom: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.row__body .cell {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.row__header .cell,
+.row__header__desktop .cell {
+  color: #fff;
+  background-color: #005ead;
+  font-weight: 600;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+.row__header__desktop {
+  display: none;
+}
+
+.cell_scroll {
+  overflow-y: scroll;
+}
+
+@media (min-width: 768px) and (min-width: 992px) {
+  .cell_scroll {
+    overflow-y: hidden;
+  }
+
+  .text__title {
+    font-size: 3em;
+  }
+
+  .table__ {
+    flex-direction: column;
+    padding: 0.5rem;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px solid #dadce0;
+  }
+
+  .table__desktop {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+
+  .row__header__desktop {
+    display: flex;
+  }
+
+  .row__header {
+    display: none;
+  }
+
+  .row__header,
+  .row__body,
+  .row__header__desktop {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .row__header .cell,
+  .row__body .cell,
+  .row__header__desktop .cell {
+    border-radius: 0;
+  }
+
+  .row__header .cell,
+  .row__body .cell,
+  .row__header__desktop .cell {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .row__header__desktop .cell:first-child {
+    border-top-left-radius: 2rem;
+  }
+
+  .row__header__desktop .cell:last-child {
+    border-top-right-radius: 2rem;
+  }
+
+  .table__footer {
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+
+  /**/
+  .flex__end {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .w__20 {
+    width: 20%;
+  }
+}
