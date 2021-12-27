@@ -13,7 +13,7 @@
         <div class="cell">Nombre</div>
         <div class="cell">APellido</div>
         <div class="cell">Email</div>
-        <div class="cell">Fecha</div>
+        <div class="cell">Celular</div>
       </div>
       <ng-container
         *ngFor="
@@ -26,14 +26,18 @@
             <div class="cell">Nombre</div>
             <div class="cell">APellido</div>
             <div class="cell">Email</div>
-            <div class="cell">Fecha</div>
+            <div class="cell">Celular</div>
           </div>
 
           <div class="row__body">
             <div class="cell">{{ paciente.nombre }}</div>
             <div class="cell">{{ paciente.apellido }}</div>
             <div class="cell cell_scroll">{{ paciente.email }}</div>
-            <div class="cell">{{ paciente.createAt }}</div>
+            <div class="cell">
+              <a class="link__phone" href="tel: +51{{ paciente.numcel }}">{{
+                paciente.numcel
+              }}</a>
+            </div>
           </div>
         </div>
       </ng-container>

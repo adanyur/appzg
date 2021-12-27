@@ -1,5 +1,5 @@
 .text__title {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 2em;
   text-align: center;
   margin-bottom: 3rem;
@@ -61,6 +61,11 @@
 
 .cell_scroll {
   overflow-y: scroll;
+}
+
+.link__phone {
+  text-decoration: none;
+  color: #000;
 }
 
 @media (min-width: 768px) and (min-width: 992px) {
